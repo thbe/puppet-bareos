@@ -1,0 +1,64 @@
+### /etc/bareos/bareos-sd.conf
+#
+# Bareos Storage Daemon Configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+Storage {
+  Name = BackupServerStorageDaemon
+  SDPort = 9103
+  WorkingDirectory = "/var/lib/bareos"
+  Pid Directory = "/var/run"
+  Maximum Concurrent Jobs = 20
+  Heartbeat Interval = 5 min
+  SDAddress = <%= @fqdn %>
+  # Plugin Directory = /usr/lib64/bareos/plugins
+  # Plugin Names = ""
+}
+
+
+#
+# List Directors who are permitted to contact Storage daemon
+#
+Director {
+  Name = BackupServerDirector
+  Password = <%= scope.lookupvar('bareos::storage_password') %>
+}
+
+#
+# Restricted Director, used by tray-monitor to get the
+#   status of the storage daemon
+#
+Director {
+  Name = BackupServerMonitor
+  Password = <%= scope.lookupvar('bareos::monitor_password') %>
+  Monitor = yes
+}
+
+#
+# Devices supported by this Storage daemon
+# To connect, the Director's bareos-dir.conf must have the same Name and MediaType.
+#
+Device {
+  Name = FileStorage
+  Media Type = File
+  Archive Device = /srv/bareos/storage
+  LabelMedia = yes;
+  Random Access = Yes;
+  AutomaticMount = yes;
+  RemovableMedia = no;
+  AlwaysOpen = no;
+}
+
+# eg.
+#@/etc/bareos/bareos-sd.d/device-gluster.conf
+
+#
+# Send all messages to the Director,
+# mount messages also are sent to the email address
+#
+Messages {
+  Name = Standard
+  director = BackupServerDirector = all
+}

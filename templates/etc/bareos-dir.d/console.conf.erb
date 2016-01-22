@@ -1,0 +1,14 @@
+### /etc/bareos/bareos-dir.d/console.conf
+#
+# Bareos director console configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Restricted console used by tray-monitor to get the status of the director ###
+Console {
+  Name = BackupServerMonitor
+  Password = <%= scope.lookupvar('bareos::monitor_password') %>
+  CommandACL = status, .status
+  JobACL = *all*
+}

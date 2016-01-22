@@ -1,0 +1,44 @@
+### /etc/bareos/bareos-fd.conf
+#
+# Bareos File Daemon Configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+#
+
+FileDaemon {
+  Name = Backup-<%= @fqdn %>
+  FDport = 9102
+  WorkingDirectory = /var/lib/bareos
+  Pid Directory = /var/run
+  Maximum Concurrent Jobs = 20
+  Heartbeat Interval = 5 min
+  FDAddress = <%= @fqdn %>
+  # Plugin Directory = /usr/lib64/bareos/plugins
+  # Plugin Names = ""
+  # compatible = yes
+}
+
+#
+# List Directors who are permitted to contact this File daemon
+#
+Director {
+  Name = BackupServerDirector
+  Password = <%= scope.lookupvar('bareos::client_password') %>
+}
+
+#
+# Restricted Director, used by tray-monitor to get the
+#   status of the file daemon
+#
+Director {
+  Name = BackupServerMonitor
+  Password = <%= scope.lookupvar('bareos::monitor_password') %>
+  Monitor = yes
+}
+
+# Send all messages except skipped files back to Director
+Messages {
+  Name = Standard
+  director = BackupServerDirector = all, !skipped, !restored
+}

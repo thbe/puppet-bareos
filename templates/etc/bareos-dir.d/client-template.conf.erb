@@ -1,0 +1,18 @@
+### /etc/bareos/bareos-dir.d/client-template.conf
+#
+# Bareos director client template definitions
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Client definition for <%= @local_client_fqdn %> ###
+Client {
+  Name = Client-<%= @local_client_fqdn %>
+  Address = <%= @local_client_fqdn %>
+  FDPort = 9102
+  Catalog = Job-Backup-Catalog
+  Password = <%= scope.lookupvar('bareos::client_password') %>
+  File Retention = <%= @local_file_retention %>
+  Job Retention = <%= @local_job_retention %>
+  AutoPrune = yes
+}

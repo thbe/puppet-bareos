@@ -1,0 +1,14 @@
+### /etc/bareos/bareos-dir.d/job-director.conf
+#
+# Bareos director job definitions
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Job Definition for <%= @fqdn %> ###
+Job {
+  Name = "Job-<%= @fqdn %>"
+  JobDefs = "DefaultJob"
+  Client = Client-<%= @fqdn %>
+  FileSet = "UnixServerComplete"
+}

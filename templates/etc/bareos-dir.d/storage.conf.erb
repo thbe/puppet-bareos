@@ -1,0 +1,16 @@
+### /etc/bareos/bareos-dir.d/storage.conf
+#
+# Bareos director storage configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Definition of file storage device (if on same box) ###
+Storage {
+  Name = File
+  Address = <%= scope.lookupvar('bareos::storage_daemon') %>
+  SDPort = 9103
+  Password = <%= scope.lookupvar('bareos::storage_password') %>
+  Device = FileStorage
+  Media Type = File
+}

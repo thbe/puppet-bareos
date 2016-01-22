@@ -1,0 +1,121 @@
+### /etc/bareos/bareos-dir.d/fileset.conf
+#
+# Bareos director fileset configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### List of files to be backed up on the various systems ###
+FileSet {
+  Name = "Catalog"
+  Include {
+    Options {
+      signature = SHA1
+    }
+    File = "/var/lib/bareos/bareos.sql"
+    File = "/etc/bareos"
+  }
+}
+
+FileSet {
+  Name = "UnixServerComplete"
+  Include {
+    Options {
+      compression = GZIP
+      signature = SHA1
+      sparse = yes
+      exclude = yes
+      wilddir = /.snap
+      wilddir = /.journal
+      wilddir = /.fsck
+      wilddir = /proc
+      wilddir = /misc
+      wilddir = /net
+      wilddir = /selinux
+      wilddir = /sys
+      wilddir = /dev
+      wilddir = /tmp
+      wilddir = /var/tmp
+      wilddir = /var/log
+      wilddir = /var/lock
+      wilddir = /var/run
+      wilddir = /var/mrepo
+      wilddir = /var/lib/nfs/rpc_pipefs
+      wilddir = /usr/src
+      wilddir = /srv/backup
+    }
+    File = "\\|sh -c 'mount | grep -E \"ext2|ext3|ext4|xfs\" | cut -d \" \" -f3'"
+  }
+}
+
+FileSet {
+  Name = "UnixServerBackupOnly"
+  Include {
+    Options {
+      compression = GZIP
+      signature = SHA1
+    }
+    File = /srv/backup
+  }
+}
+
+FileSet {
+  Name = "WindowsServerBackupOnly"
+  Enable VSS = yes
+  Include {
+    Options {
+      signature = SHA1
+    }
+    File = c:/local/backup
+  }
+}
+
+FileSet {
+  Name = "Windows All Drives"
+  Enable VSS = yes
+  Include {
+    Options {
+      Signature = MD5
+      Drive Type = fixed
+      IgnoreCase = yes
+      WildFile = "[A-Z]:/pagefile.sys"
+      WildDir = "[A-Z]:/RECYCLER"
+      WildDir = "[A-Z]:/$RECYCLE.BIN"
+      WildDir = "[A-Z]:/System Volume Information"
+      Exclude = yes
+    }
+    File = /
+  }
+}
+
+FileSet {
+  Name = "Linux All"
+  Include {
+    Options {
+      Signature = MD5 # calculate md5 checksum per file
+      One FS = No     # change into other filessytems
+      FS Type = ext2  # filesystems of given types will be backed up
+      FS Type = ext3  # others will be ignored
+      FS Type = ext4
+      FS Type = xfs
+      FS Type = zfs
+      FS Type = reiserfs
+      FS Type = jfs
+      FS Type = btrfs
+    }
+    File = /
+  }
+  # Things that usually have to be excluded
+  # You have to exclude /var/lib/bareos/storage
+  # on your bareos server
+  Exclude {
+    File = /var/lib/bareos
+    File = /var/lib/bareos/storage
+    File = /srv/bareos/storage
+    File = /srv/bareos/restore
+    File = /proc
+    File = /tmp
+    File = /.journal
+    File = /.fsck
+  }
+}

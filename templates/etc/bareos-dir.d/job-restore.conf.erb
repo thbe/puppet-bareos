@@ -1,0 +1,22 @@
+### /etc/bareos/bareos-dir.d/job-restore.conf
+#
+# Bareos director job definitions for restore
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Job Definition ###
+Job {
+  Name = "Job-Restore-Files"
+  Type = Restore
+  Client = Client-<%= @fqdn %>
+  FileSet = "UnixServerComplete"
+  #FileSet = "Linux All"
+  Storage = File
+  Pool = Default
+  Full Backup Pool = Full-Pool
+  Incremental Backup Pool = Inc-Pool
+  Differential Backup Pool = Diff-Pool
+  Messages = Standard
+  Where = /srv/bareos/restores
+}

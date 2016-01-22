@@ -1,0 +1,21 @@
+### /etc/bareos/bareos-dir.d/job-backup-catalog.conf
+#
+# Bareos director job definitions for backup the catalog
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Job Definition ###
+Job {
+  Name = "Job-Backup-Catalog"
+  Client = Client-<%= @fqdn %>
+  FileSet = "Catalog"
+  JobDefs = "DefaultJob"
+  Level = Full
+  Schedule = "WeeklyCycleAfterBackup"
+  RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl BackupCatalog"
+  RunAfterJob  = "/usr/lib/bareos/scripts/delete_catalog_backup"
+  Write Bootstrap = "/var/lib/bareos/%n.bsr"
+  Priority = 11
+  Full Backup Pool = Catalog-Pool
+}

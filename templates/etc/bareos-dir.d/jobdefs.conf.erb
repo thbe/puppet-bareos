@@ -1,0 +1,33 @@
+### /etc/bareos/bareos-dir.d/jobdefs.conf
+#
+# Bareos director job definitions
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Default job definition ###
+JobDefs {
+  Name = "DefaultJob"
+  Type = Backup
+  Level = Incremental
+  Client = <%= @fqdn %>
+  FileSet = "UnixServerComplete"
+  Schedule = "WeeklyCycle"
+  Storage = File
+  Messages = Standard
+  Pool = Default
+  Full Backup Pool = Full-Pool
+  Incremental Backup Pool = Inc-Pool
+  Differential Backup Pool = Diff-Pool
+  Priority = 10
+  Accurate = yes
+  Write Bootstrap = "/var/lib/bareos/%c.bsr"
+#  RunScript {
+#    RunsWhen = After
+#    RunsOnFailure = yes
+#    RunsOnSuccess = yes
+#    RunsOnClient = no
+#    FailJobOnError = no
+#    Command = "/opt/bareos/bin/notify_nagios.sh '%c' '%d' '%e' '%i' '%j' '%l' '%n' '%s' '%t' '%v'"
+#  }
+}

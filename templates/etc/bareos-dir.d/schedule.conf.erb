@@ -1,0 +1,20 @@
+### /etc/bareos/bareos-dir.d/schedule.conf
+#
+# Bareos director schedule configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Define schedules for backups ###
+Schedule {
+  Name = "WeeklyCycle"
+  Run = Full 1st sat at 21:00
+  Run = Differential 2nd-5th sun at 21:00
+  Run = Incremental mon-fri at 21:00
+}
+
+# This schedule does the catalog. It starts after the WeeklyCycle
+Schedule {
+  Name = "WeeklyCycleAfterBackup"
+  Run = Full mon-fri at 21:10
+}

@@ -1,0 +1,14 @@
+### /etc/bareos/bareos-dir.d/job-template.conf
+#
+# Bareos director job template definitions
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Job Definition ###
+Job {
+  Name = "Job-<%= @local_client_fqdn %>"
+  JobDefs = "DefaultJob"
+  Client = Client-<%= @local_client_fqdn %>
+  FileSet = "<%= @local_fileset %>"
+}

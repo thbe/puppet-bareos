@@ -1,0 +1,18 @@
+### /etc/bareos/bareos-dir.d/client-director.conf
+#
+# Bareos director client configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Client definition for <%= @fqdn %> ###
+Client {
+  Name = Client-<%= @fqdn %>
+  Address = <%= @fqdn %>
+  FDPort = 9102
+  Catalog = Job-Backup-Catalog
+  Password = <%= scope.lookupvar('bareos::client_password') %>
+  File Retention = 10 days
+  Job Retention = 30 days
+  AutoPrune = yes
+}

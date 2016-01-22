@@ -1,0 +1,46 @@
+### /etc/bareos/bareos-dir.conf
+#
+# Bareos Director configuration file for disk-only backup
+#
+# This disk-only setup stores all data into /srv/bareos/storage
+# The preconfigured backup scheme is as follows:
+#
+#   Full Backups are done on first Saturday at 21:00
+#   Full Backups are written into the "Full" Pool
+#   Full Backups are kept for 70 Days
+#
+#   Differential Backups are done on 2nd to 5th Saturday at 21:00
+#   Differential Backups are written into the "Differential" Pool
+#   Differential Backups are kept for 50 Days
+#
+#   Incremental Backups are done monday to friday at 21:00
+#   Incremental Backups are written into the "Incremental" Pool
+#   Incremental Backups are kept for 30 Days
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Include director configurations ###
+@/etc/bareos/bareos-dir.d/director.conf
+@/etc/bareos/bareos-dir.d/console.conf
+@/etc/bareos/bareos-dir.d/storage.conf
+@/etc/bareos/bareos-dir.d/catalog.conf
+@/etc/bareos/bareos-dir.d/messages.conf
+@/etc/bareos/bareos-dir.d/pool.conf
+@/etc/bareos/bareos-dir.d/schedule.conf
+@/etc/bareos/bareos-dir.d/fileset.conf
+@/etc/bareos/bareos-dir.d/jobdefs.conf
+
+### Local client definitions ###
+@/etc/bareos/bareos-dir.d/client-director.conf
+
+### Include client definitions ###
+@|"find /etc/bareos/bareos-dir.d/clients -name '*.conf' -type f -exec echo @{} \;"
+
+### Jobs definitions ###
+@/etc/bareos/bareos-dir.d/job-backup-catalog.conf
+@/etc/bareos/bareos-dir.d/job-director.conf
+@/etc/bareos/bareos-dir.d/job-restore.conf
+
+### Include job definitions ###
+@|"find /etc/bareos/bareos-dir.d/jobs -name '*.conf' -type f -exec echo @{} \;"

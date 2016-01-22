@@ -1,0 +1,7 @@
+fixtures:
+  forge_modules:
+    stdlib: "puppetlabs/stdlib"
+    mysql: "puppetlabs/mysql"
+    staging: "nanliu/staging"
+  symlinks:
+    bareos: "#{source_dir}"

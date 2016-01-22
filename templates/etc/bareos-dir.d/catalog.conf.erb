@@ -1,0 +1,16 @@
+### /etc/bareos/bareos-dir.d/catalog.conf
+#
+# Bareos director catalog configuration file
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+### Generic catalog ###
+Catalog {
+  Name = Job-Backup-Catalog
+  dbdriver = "mysql"
+  dbname = "bareos"
+  dbuser = "bareos"
+  dbpassword = "<%= scope.lookupvar('bareos::db_password') %>"
+  DB Address = localhost
+}

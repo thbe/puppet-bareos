@@ -1,0 +1,18 @@
+{
+  "name": "thbe-bareos",
+  "version": "0.1.0",
+  "author": "thbe",
+  "summary": "Install a Bareos enterprise class backup instance",
+  "license": "GPL-3.0",
+  "source": "https://github.com/thbe/puppet-bareos.git",
+  "project_page": "https://github.com/thbe/puppet-bareos",
+  "issues_url": "https://github.com/thbe/puppet-bareos/issues",
+  "operatingsystem_support": [
+    { "operatingsystem": "RedHat", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
+    { "operatingsystem": "CentOS", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs-mysql", "version_range": ">=2.3.x <3.0.0" }
+  ],
+  "data_provider": null
+}
