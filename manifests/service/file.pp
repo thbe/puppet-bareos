@@ -17,6 +17,6 @@ class bareos::service::file {
     $bareos::params::service_file_daemon:
       ensure  => 'running',
       enable  => true,
-      require => Package[$bareos::params::package_file];
+      require => Package[$bareos::params::package_file_daemon];
   }
 }

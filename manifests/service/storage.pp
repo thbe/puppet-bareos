@@ -17,6 +17,6 @@ class bareos::service::storage {
     $bareos::params::service_storage:
       ensure  => 'running',
       enable  => true,
-      require => Package[$bareos::params::package_storage_common];
+      require => Package[$bareos::params::package_storage];
   }
 }
