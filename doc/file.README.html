@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="puppet_manifest_list_link"
+        href="puppet_manifest_list.html">
+      Puppet Manifest List
+    </a>
+  
+    <a class="full_list_link" id="puppet_plugin_list_link"
+        href="puppet_plugin_list.html">
+      Puppet Plugin List
+    </a>
+  
+    <a class="full_list_link" id="puppet_type_list_link"
+        href="puppet_type_list.html">
+      Puppet Type List
+    </a>
+  
+    <a class="full_list_link" id="puppet_provider_list_link"
+        href="puppet_provider_list.html">
+      Puppet Provider List
+    </a>
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="label-bareos">bareos</h1>
+
+<p><a href="https://travis-ci.org/thbe/puppet-bareos"><img
+src="https://travis-ci.org/thbe/puppet-bareos.png?branch=master"></a> <a
+href="https://forge.puppetlabs.com/thbe/bareos"><img
+src="https://img.shields.io/puppetforge/v/thbe/bareos.svg"></a> <a
+href="https://coveralls.io/github/thbe/puppet-bareos?branch=master"><img
+src="https://coveralls.io/repos/thbe/puppet-bareos/badge.svg?branch=master&service=github"></a></p>
+
+<h4 id="label-Table+of+Contents">Table of Contents</h4>
+<ol><li>
+<p><a href="#description">Description</a></p>
+</li><li>
+<p><a href="#setup">Setup - The basics of getting started with bareos</a></p>
+<ul><li>
+<p><a href="#what-bareos-affects">What bareos affects</a></p>
+</li><li>
+<p><a href="#setup-requirements">Setup requirements</a></p>
+</li><li>
+<p><a href="#beginning-with-bareos">Beginning with bareos</a></p>
+</li></ul>
+</li><li>
+<p><a href="#usage">Usage - Configuration options and additional
+functionality</a></p>
+</li><li>
+<p><a href="#reference">Reference - An under-the-hood peek at what the module
+is doing and how</a></p>
+</li><li>
+<p><a href="#limitations">Limitations - OS compatibility, etc.</a></p>
+</li><li>
+<p><a href="#development">Development - Guide for contributing to the
+module</a></p>
+</li></ol>
+
+<h2 id="label-Description">Description</h2>
+
+<p>This module install and configure the enterprise class bareos backup
+solution. It could be used for all three components, the client, the server
+and the storage side.</p>
+
+<h2 id="label-Setup">Setup</h2>
+
+<h3 id="label-What+bareos+affects">What bareos affects</h3>
+<ul><li>
+<p>The module install packages based on usage type.</p>
+</li><li>
+<p>The module configure the services based on usage type.</p>
+</li><li>
+<p>The module start the necessary services based on usage type.</p>
+</li><li>
+<p>The module install and configure MySQL if used as backup server.</p>
+</li></ul>
+
+<h3 id="label-Setup+Requirements">Setup Requirements</h3>
+
+<p>No additional actions needed to use this module.</p>
+
+<h3 id="label-Beginning+with+bareos">Beginning with bareos</h3>
+
+<p>This module could be used to install and configure three components needed
+to perform distributed backups.</p>
+
+<h2 id="label-Usage">Usage</h2>
+
+<p>This module can install the:</p>
+<ul><li>
+<p>bareos director</p>
+</li><li>
+<p>bareos storage daemon</p>
+</li><li>
+<p>bareos file descriptor</p>
+</li></ul>
+
+<h3 id="label-bareos+director">bareos director</h3>
+
+<pre class="code ruby"><code class="ruby">class { &#39;bareos&#39;:
+  type_dir =&gt; true,
+  client_password =&gt; &#39;Start123!&#39;,
+  monitor_password =&gt; &#39;Start123!&#39;,
+  storage_password =&gt; &#39;Start123!&#39;,
+  storage_daemon =&gt; &#39;bac-sd.example.local&#39;,
+  mail_hub =&gt; &#39;mail.example.local&#39;,
+  mail_group =&gt; &#39;bac-group@example.local&#39;,
+  backup_clients =&gt; [ &#39;client1.example.local&#39;, &#39;client2.example.local&#39; ]
+}</code></pre>
+
+<h3 id="label-bareos+storage+daemon">bareos storage daemon</h3>
+
+<pre class="code ruby"><code class="ruby">class { &#39;bareos&#39;:
+  type_sd =&gt; true,
+  monitor_password =&gt; &#39;Start123!&#39;,
+  storage_password =&gt; &#39;Start123!&#39;,
+  storage_daemon =&gt; &#39;bac-sd.example.local&#39;
+}</code></pre>
+
+<h3 id="label-bareos+file+descriptor">bareos file descriptor</h3>
+
+<pre class="code ruby"><code class="ruby">class { &#39;bareos&#39;:
+  type_fd =&gt; true,
+  client_password =&gt; &#39;Start123!&#39;,
+  monitor_password =&gt; &#39;Start123!&#39;
+}</code></pre>
+
+<h2 id="label-Reference">Reference</h2>
+
+<p>Here is the list of parameters used by this module.</p>
+
+<h4 id="label-24type_fd"><code>$type_fd</code></h4>
+
+<p>Specify if file descriptor components should be installed Default value is
+false</p>
+
+<h4 id="label-24type_sd"><code>$type_sd</code></h4>
+
+<p>Specify if storage daemon components should be installed Default value is
+false</p>
+
+<h4 id="label-24type_dir"><code>$type_dir</code></h4>
+
+<p>Specify if director components should be installed Default value is false</p>
+
+<h4 id="label-24db_password"><code>$db_password</code></h4>
+
+<p>Specify the database password Default value is 0nly4install</p>
+
+<h4 id="label-24db_password_hash"><code>$db_password_hash</code></h4>
+
+<p>Specify the database password hash Default value is
+*31F96A5E321BF3E06E35668ED982CC2447CF5B3F</p>
+
+<h4 id="label-24client_password"><code>$client_password</code></h4>
+
+<p>Specify the client password Default value is client-password-for-bareos</p>
+
+<h4 id="label-24monitor_password"><code>$monitor_password</code></h4>
+
+<p>Specify the monitor password Default value is monitor-password-for-bareos</p>
+
+<h4 id="label-24storage_password"><code>$storage_password</code></h4>
+
+<p>Specify the storage daemon password Default value is
+storage-password-for-bareos</p>
+
+<h4 id="label-24storage_daemon"><code>$storage_daemon</code></h4>
+
+<p>Specify the storage daemon that should be used Default value is
+storage-daemon.domain.local</p>
+
+<h4 id="label-24mail_hub"><code>$mail_hub</code></h4>
+
+<p>Specify the mail hub that should be used Default value is
+mail-hub.domain.local</p>
+
+<h4 id="label-24mail_group"><code>$mail_group</code></h4>
+
+<p>Specify the mail group that should be used Default value is
+bareos-list@domain.local</p>
+
+<h4 id="label-24backup_clients"><code>$backup_clients</code></h4>
+
+<p>Specify the clients that should be backuped Default value is no client</p>
+
+<h2 id="label-Limitations">Limitations</h2>
+
+<p>This module has been built on and tested against Puppet 4.0 and higher.</p>
+
+<p>The module has been tested on:</p>
+<ul><li>
+<p>CentOS Linux 7</p>
+</li></ul>
+
+<p>Testing on other platforms has been light and cannot be guaranteed.</p>
+
+<p>This module does currently only support a limited set of distributions and
+need to be reworked for other distributions as well.</p>
+
+<h2 id="label-Development">Development</h2>
+
+<p>If you like to add or improve this module, feel free to fork the module and
+send me a merge request with the modification.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Jan 26 16:50:39 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.3.0).
+</div>
+
+  </body>
+</html>
