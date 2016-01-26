@@ -19,6 +19,11 @@ class bareos::config::director {
       mode    => '0755',
       path    => $bareos::params::config_confd_dir;
 
+    $bareos::params::config_confd_storage_dir:
+      ensure  => directory,
+      mode    => '0755',
+      path    => $bareos::params::config_confd_storage_dir;
+
     $bareos::params::config_confd_clients_dir:
       ensure  => directory,
       mode    => '0755',

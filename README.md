@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/thbe/puppet-bareos.png?branch=master)](https://travis-ci.org/thbe/puppet-bareos)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/thbe/bareos.svg)](https://forge.puppetlabs.com/thbe/bareos)
-[![Coverage Status](https://coveralls.io/repos/thbe/puppet-ssmtp/badge.svg?branch=master&service=github)](https://coveralls.io/github/thbe/puppet-bareos?branch=master)
+[![Coverage Status](https://coveralls.io/repos/thbe/puppet-bareos/badge.svg?branch=master&service=github)](https://coveralls.io/github/thbe/puppet-bareos?branch=master)
 
 #### Table of Contents
 
