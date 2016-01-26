@@ -19,6 +19,6 @@ class bareos::config::storage {
       mode    => '0644',
       content => template($bareos::params::config_storage_template),
       notify  => Service[$bareos::params::service_storage],
-      require => Package[$bareos::params::package_storage_common];
+      require => Package[$bareos::params::package_storage];
   }
 }
