@@ -17,6 +17,6 @@ class bareos::service::director {
     $bareos::params::service_director:
       ensure  => 'running',
       enable  => true,
-      require => Package[$bareos::params::package_director_common];
+      require => Package[$bareos::params::package_director];
   }
 }
