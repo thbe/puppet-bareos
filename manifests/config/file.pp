@@ -18,7 +18,7 @@ class bareos::config::file {
       ensure  => file,
       mode    => '0644',
       content => template($bareos::params::config_file_template),
-      notify  => Service[$bareos::params::service_file],
-      require => Package[$bareos::params::package_file];
+      notify  => Service[$bareos::params::service_file_daemon],
+      require => Package[$bareos::params::package_file_daemon];
   }
 }
