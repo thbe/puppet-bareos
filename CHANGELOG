@@ -1,2 +1,5 @@
+0.1.1 2016-01-20 thbe <project@bendler-net.de>
+ * Disabled glusterfs plugin, not in EL6
+
 0.1.0 2016-01-20 thbe <project@bendler-net.de>
  * Initial release
