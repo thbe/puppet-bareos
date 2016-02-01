@@ -43,7 +43,7 @@ describe 'bareos', :type => :class do
 
         it { is_expected.to contain_package('bareos-common').with_ensure('installed') }
         it { is_expected.to contain_package('bareos-filedaemon').with_ensure('installed') }
-        it { is_expected.to contain_package('bareos-filedaemon-glusterfs-plugin').with_ensure('installed') }
+        #it { is_expected.to contain_package('bareos-filedaemon-glusterfs-plugin').with_ensure('installed') }
         it { is_expected.to contain_package('bareos-storage').with_ensure('installed') }
         it { is_expected.to contain_package('bareos-storage-fifo').with_ensure('installed') }
         it { is_expected.to contain_package('bareos-storage-glusterfs').with_ensure('installed') }
