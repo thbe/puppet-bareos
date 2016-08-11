@@ -26,7 +26,7 @@ class bareos::config {
     include bareos::config::director
   }
 
-  if $bareos::type_dir {
+  if $bareos::type_webui {
     include bareos::config::webui
   }
 }
