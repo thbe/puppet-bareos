@@ -14,6 +14,5 @@ class bareos::package::file {
 
   # file packages
   package { $bareos::params::package_file_daemon: ensure => installed; }
-
   #package { $bareos::params::package_file_daemon_glusterfs_plugin: ensure => installed; }
 }

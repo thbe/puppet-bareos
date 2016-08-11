@@ -13,11 +13,8 @@
 class bareos::package::storage {
 
   # Common packages
-  package { $bareos::params::package_storage: ensure => installed; }
-
-  package { $bareos::params::package_storage_fifo: ensure => installed; }
-
-  package { $bareos::params::package_storage_glusterfs: ensure => installed; }
-
-  package { $bareos::params::package_storage_tape: ensure => installed; }
+  package { $bareos::params::package_storage:            ensure => installed; }
+  package { $bareos::params::package_storage_fifo:       ensure => installed; }
+  package { $bareos::params::package_storage_glusterfs:  ensure => installed; }
+  package { $bareos::params::package_storage_tape:       ensure => installed; }
 }

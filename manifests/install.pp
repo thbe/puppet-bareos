@@ -1,4 +1,4 @@
-# Class: bareos::package
+# Class: bareos::install
 #
 # This class contain the service configuration for bareos
 #
@@ -8,25 +8,25 @@
 #
 # Requires:     This module has no requirements
 #
-# Sample Usage: include bareos::package
+# Sample Usage: include bareos::install
 #
-class bareos::package {
+class bareos::install {
 
   if $bareos::manage_repo {
-    include bareos::package::repo
+    include bareos::install::repo
   }
 
-  include bareos::package::common
+  include bareos::install::common
 
   if $bareos::type_fd {
-    include bareos::package::file
+    include bareos::install::file
   }
 
   if $bareos::type_sd {
-    include bareos::package::storage
+    include bareos::install::storage
   }
 
   if $bareos::type_dir {
-    include bareos::package::director
+    include bareos::install::director
   }
 }

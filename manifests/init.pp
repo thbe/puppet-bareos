@@ -106,19 +106,29 @@ class bareos (
   $mail_hub                 = $bareos::params::mail_hub,
   $mail_group               = $bareos::params::mail_group,
   $backup_clients           = []
-  ) inherits bareos::params {
+) inherits bareos::params {
+
+  # Validate parameters
+  validate_bool($bareos::manage_repo)
+  validate_bool($bareos::type_fd)
+  validate_bool($bareos::type_sd)
+  validate_bool($bareos::type_dir)
+  validate_string($bareos::db_password)
+  validate_string($bareos::db_password_hash)
+  validate_string($bareos::client_password)
+  validate_string($bareos::monitor_password)
+  validate_string($bareos::storage_password)
+  validate_string($bareos::storage_daemon)
+  validate_string($bareos::mail_hub)
+  validate_string($bareos::mail_group)
+  validate_array($bareos::backup_clients)
 
   # Start workflow
   if $bareos::params::linux {
-    # Containment
-    contain bareos::package
-    contain bareos::config
-    contain bareos::service
-
-    # Include classes
-    Class['bareos::package'] ->
-    Class['bareos::config'] ->
-    Class['bareos::service']
+    class{'bareos::install': } ->
+    class{'bareos::config': } ~>
+    class{'bareos::service': } ->
+    Class['bareos']
   }
   else {
     warning('The current operating system is not supported!')

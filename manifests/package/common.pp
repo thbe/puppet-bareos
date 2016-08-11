@@ -13,6 +13,5 @@
 class bareos::package::common {
 
   # Common packages
-
   package { $bareos::params::package_common: ensure => installed; }
 }

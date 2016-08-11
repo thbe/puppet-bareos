@@ -14,13 +14,9 @@ class bareos::package::director {
 
   # director packages
 
-  package { $bareos::params::package_director: ensure => installed; }
-
-  package { $bareos::params::package_database_common: ensure => installed; }
-
-  package { $bareos::params::package_database_mysql: ensure => installed; }
-
-  package { $bareos::params::package_database_tools: ensure => installed; }
-
-  package { $bareos::params::package_console: ensure => installed; }
+  package { $bareos::params::package_director:         ensure => installed; }
+  package { $bareos::params::package_database_common:  ensure => installed; }
+  package { $bareos::params::package_database_mysql:   ensure => installed; }
+  package { $bareos::params::package_database_tools:   ensure => installed; }
+  package { $bareos::params::package_console:          ensure => installed; }
 }
