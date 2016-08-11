@@ -1,4 +1,7 @@
-0.2.0 2016-01-20 thbe <project@bendler-net.de>
+0.2.1 2016-08-11 thbe <project@bendler-net.de>
+ * Backport fixes from bacula module
+
+0.2.0 2016-08-11 thbe <project@bendler-net.de>
  * Rewrite spec file
  * Fix PID path
  * Fix bareos user home

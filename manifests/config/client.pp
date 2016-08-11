@@ -29,7 +29,7 @@ define bareos::config::client (
     mode    => '0644',
     content => template($bareos::params::config_confd_client_template),
     notify  => Service[$bareos::params::service_director],
-    require => Package[$bareos::params::package_file_daemon];
+    require => Package[$bareos::params::package_director];
   }
 
   # Create job definition
@@ -38,6 +38,6 @@ define bareos::config::client (
     mode    => '0644',
     content => template($bareos::params::config_confd_job_template),
     notify  => Service[$bareos::params::service_director],
-    require => Package[$bareos::params::package_file_daemon];
+    require => Package[$bareos::params::package_director];
   }
 }
