@@ -31,7 +31,7 @@ class bareos::config::mysql {
       'bareos@localhost/bareos.*' => {
         ensure     => present,
         options    => [ 'GRANT' ],
-        privileges => [ 'CREATE', 'CREATE VIEW', 'INDEX', 'SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'EXECUTE' ],
+        privileges => [ 'CREATE', 'CREATE VIEW', 'INDEX', 'SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'EXECUTE', 'LOCK TABLES' ],
         table      => 'bareos.*',
         user       => 'bareos@localhost',
       },
