@@ -10,7 +10,7 @@ JobDefs {
   Name = "DefaultJob"
   Type = Backup
   Level = Incremental
-  Client = <%= @fqdn %>
+  Client = Client-<%= @fqdn %>
   FileSet = "UnixServerComplete"
   Schedule = "WeeklyCycle"
   Storage = File
