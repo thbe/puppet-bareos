@@ -18,10 +18,10 @@ class bareos::package::repo {
 
   # Create client defintion
   file { $bareos::params::package_repository:
-    ensure  => file,
-    mode    => '0644',
-    notify  => Exec['rpm-key-import', 'yum-update-cache'],
-    source  => $module_repository_file;
+    ensure => file,
+    mode   => '0644',
+    notify => Exec['rpm-key-import', 'yum-update-cache'],
+    source => $module_repository_file;
   }
 
   # yum/rpm configuration
