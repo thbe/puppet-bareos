@@ -13,7 +13,7 @@ Job {
   JobDefs = "DefaultJob"
   Level = Full
   Schedule = "WeeklyCycleAfterBackup"
-  RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl BackupCatalog"
+  RunBeforeJob = "/usr/lib/bareos/scripts/make_catalog_backup.pl Job-Backup-Catalog"
   RunAfterJob  = "/usr/lib/bareos/scripts/delete_catalog_backup"
   Write Bootstrap = "/var/lib/bareos/%n.bsr"
   Priority = 11
