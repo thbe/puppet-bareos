@@ -127,7 +127,7 @@ class bareos (
   if $bareos::params::linux {
     class{'bareos::install': } ->
     class{'bareos::config': } ~>
-    class{'bareos::service': } ->
+    class{'bareos::run': } ->
     Class['bareos']
   }
   else {

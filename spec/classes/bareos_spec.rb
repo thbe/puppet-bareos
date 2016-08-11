@@ -23,23 +23,23 @@ describe 'bareos', :type => :class do
 
       it { is_expected.to compile.with_all_deps }
 
-      it { is_expected.to contain_class('bareos::package') }
-      it { is_expected.to contain_class('bareos::package::common') }
-      it { is_expected.to contain_class('bareos::package::repo') }
-      it { is_expected.to contain_class('bareos::package::file') }
-      it { is_expected.to contain_class('bareos::package::storage') }
-      it { is_expected.to contain_class('bareos::package::director') }
       it { is_expected.to contain_class('bareos::params') }
+      it { is_expected.to contain_class('bareos::install') }
+      it { is_expected.to contain_class('bareos::install::common') }
+      it { is_expected.to contain_class('bareos::install::repo') }
+      it { is_expected.to contain_class('bareos::install::file') }
+      it { is_expected.to contain_class('bareos::install::storage') }
+      it { is_expected.to contain_class('bareos::install::director') }
       it { is_expected.to contain_class('bareos::config') }
       it { is_expected.to contain_class('bareos::config::user') }
       it { is_expected.to contain_class('bareos::config::file') }
       it { is_expected.to contain_class('bareos::config::storage') }
       it { is_expected.to contain_class('bareos::config::mysql') }
       it { is_expected.to contain_class('bareos::config::director') }
-      it { is_expected.to contain_class('bareos::service') }
-      it { is_expected.to contain_class('bareos::service::file') }
-      it { is_expected.to contain_class('bareos::service::storage') }
-      it { is_expected.to contain_class('bareos::service::director') }
+      it { is_expected.to contain_class('bareos::run') }
+      it { is_expected.to contain_class('bareos::run::file') }
+      it { is_expected.to contain_class('bareos::run::storage') }
+      it { is_expected.to contain_class('bareos::run::director') }
 
       it { is_expected.to contain_package('bareos-common').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-filedaemon').with_ensure('installed') }
