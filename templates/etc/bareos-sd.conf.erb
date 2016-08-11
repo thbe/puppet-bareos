@@ -8,8 +8,8 @@
 Storage {
   Name = BackupServerStorageDaemon
   SDPort = 9103
-  WorkingDirectory = "/var/lib/bareos"
-  Pid Directory = "/var/run"
+  WorkingDirectory = /var/lib/bareos
+  Pid Directory = /var/lib/bareos
   Maximum Concurrent Jobs = 20
   Heartbeat Interval = 5 min
   SDAddress = <%= @fqdn %>

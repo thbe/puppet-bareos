@@ -10,7 +10,7 @@ group :development, :test do
   gem 'metadata-json-lint',           :require => false
   gem 'serverspec',                   :require => false
   gem 'rspec-core',                   :require => false
-  gem 'rspec-puppet',                 :require => false
+  gem 'rspec-puppet', '2.3.2',        :require => false
   gem 'rspec-puppet-facts',           :require => false
   gem 'rspec-system',                 :require => false
   gem 'rspec-system-puppet',          :require => false
@@ -34,4 +34,9 @@ if puppetversion = ENV['PUPPET_GEM_VERSION']
   gem 'puppet', puppetversion,        :require => false
 else
   gem 'puppet',                       :require => false
+end
+
+# rspec must be v2 for ruby 1.8.7
+if RUBY_VERSION >= '1.8.7' and RUBY_VERSION < '1.9'
+  gem 'rspec', '~> 2.0'
 end

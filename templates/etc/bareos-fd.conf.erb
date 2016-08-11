@@ -10,7 +10,7 @@ FileDaemon {
   Name = Backup-<%= @fqdn %>
   FDport = 9102
   WorkingDirectory = /var/lib/bareos
-  Pid Directory = /var/run
+  Pid Directory = /var/lib/bareos
   Maximum Concurrent Jobs = 20
   Heartbeat Interval = 5 min
   FDAddress = <%= @fqdn %>

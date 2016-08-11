@@ -19,7 +19,7 @@ class bareos::config::user {
     ensure     => present,
     gid        => 'bareos',
     comment    => 'bareos Backup System',
-    home       => '/var/spool/bareos',
+    home       => '/var/lib/bareos',
     shell      => '/sbin/nologin',
     managehome => false,
     password   => '!!',

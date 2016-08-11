@@ -62,7 +62,7 @@ class bareos::config::mysql {
     ensure  => file,
     mode    => '0755',
     source  => $bareos::params::config_schema_script_file,
-    require => Package[$bareos::params::package_file_daemon];
+    require => Package[$bareos::params::package_database_mysql];
   }
 
   # Execute schema population script
