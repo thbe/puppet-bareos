@@ -6,6 +6,7 @@
 /Gemfile.lock
 /junit
 /log
+/spec/fixtures/modules/*
 .yardoc
 coverage
 TODO

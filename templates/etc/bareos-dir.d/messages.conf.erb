@@ -8,8 +8,8 @@
 ### Reasonable message delivery -- send most everything to email address ###
 Messages {
   Name = Standard
-  mailcommand = "/usr/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: %t %e of %c %l\" %r"
-  operatorcommand = "/usr/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: Intervention needed for %j\" %r"
+  mailcommand = "/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: %t %e of %c %l\" %r"
+  operatorcommand = "/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: Intervention needed for %j\" %r"
   mail = <%= scope.lookupvar('bareos::mail_group') %> = all, !skipped, !audit
   operator = <%= scope.lookupvar('bareos::mail_group') %> = mount
   append = "/var/log/bareos/bareos.log" = all, !skipped, !audit
@@ -20,8 +20,8 @@ Messages {
 
 Messages {
   Name = Daemon
-  mailcommand = "/usr/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: %t %e of %c %l\" %r"
-  mail = <%= scope.lookupvar('bareos::mail_group') %> = = all, !skipped, !audit
+  mailcommand = "/sbin/bsmtp -h <%= scope.lookupvar('bareos::mail_hub') %> -f \"\(Bareos\) \<bareos@<%= @fqdn %>\>\" -s \"Bareos: %t %e of %c %l\" %r"
+  mail = <%= scope.lookupvar('bareos::mail_group') %> = all, !skipped, !audit
   syslog = all, !skipped
   console = all, !skipped, !saved, !audit
   append = "/var/log/bareos/bareos.log" = all, !skipped, !audit
