@@ -25,4 +25,8 @@ class bareos::config {
     include bareos::config::mysql
     include bareos::config::director
   }
+
+  if $bareos::type_dir {
+    include bareos::config::webui
+  }
 }

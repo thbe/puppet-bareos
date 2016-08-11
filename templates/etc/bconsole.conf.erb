@@ -1,0 +1,13 @@
+### /etc/bareos/bconsole.conf
+#
+# Bareos User Agent (or Console) Configuration File
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+Director {
+  Name = BackupServerDirector
+  DIRport = 9101
+  address = <%= @fqdn %>
+  Password = <%= scope.lookupvar('bareos::client_password') %>
+}

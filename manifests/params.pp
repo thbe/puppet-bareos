@@ -30,6 +30,7 @@ class bareos::params {
       $package_database_mysql                     = 'bareos-database-mysql'
       $package_database_tools                     = 'bareos-database-tools'
       $package_console                            = 'bareos-bconsole'
+      $package_webui                              = 'bareos-webui'
 
       # Config definition
       $config_file                                = '/etc/bareos/bareos-fd.conf'
@@ -38,6 +39,8 @@ class bareos::params {
       $config_storage_template                    = 'bareos/etc/bareos-sd.conf.erb'
       $config_director                            = '/etc/bareos/bareos-dir.conf'
       $config_director_template                   = 'bareos/etc/bareos-dir.conf.erb'
+      $config_console                             = '/etc/bareos/bconsole.conf'
+      $config_console_template                    = 'bareos/etc/bconsole.conf.erb'
       $config_confd_dir                           = '/etc/bareos/bareos-dir.d'
       $config_confd_clients_dir                   = '/etc/bareos/bareos-dir.d/clients'
       $config_confd_jobs_dir                      = '/etc/bareos/bareos-dir.d/jobs'
@@ -67,6 +70,10 @@ class bareos::params {
       $config_confd_schedule_template             = 'bareos/etc/bareos-dir.d/schedule.conf.erb'
       $config_confd_storage                       = '/etc/bareos/bareos-dir.d/storage.conf'
       $config_confd_storage_template              = 'bareos/etc/bareos-dir.d/storage.conf.erb'
+      $config_confd_webui_consoles                = '/etc/bareos/bareos-dir.d/webui-consoles.conf'
+      $config_confd_webui_consoles_template       = 'bareos/etc/bareos-dir.d/webui-consoles.conf.erb'
+      $config_confd_webui_profiles                = '/etc/bareos/bareos-dir.d/webui-profiles.conf'
+      $config_confd_webui_profiles_template       = 'bareos/etc/bareos-dir.d/webui-profiles.conf.erb'
 
       $config_confd_storage_dir                   = '/etc/bareos/bareos-sd.d'
 
@@ -80,6 +87,7 @@ class bareos::params {
       $service_file_daemon                        = 'bareos-fd'
       $service_storage                            = 'bareos-sd'
       $service_director                           = 'bareos-dir'
+      $service_webui                              = 'httpd'
     }
     default  : {
       $linux                                      = false

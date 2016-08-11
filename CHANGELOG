@@ -1,3 +1,7 @@
+0.3.0 2016-08-11 thbe <project@bendler-net.de>
+ * Add bconsole configuration
+ * Add bareos-webui
+
 0.2.3 2016-08-11 thbe <project@bendler-net.de>
  * Fix config file typo
 

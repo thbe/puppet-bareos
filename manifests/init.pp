@@ -24,6 +24,10 @@
 #   Specify if director components should be installed
 #   Default value is false
 #
+# * `type_webui`
+#   Specify if webui components should be installed
+#   Default value is false
+#
 # * `db_password`
 #   Specify the database password
 #   Default value is 0nly4install
@@ -59,6 +63,10 @@
 # * `backup_clients`
 #   Specify the clients that should be backuped
 #   Default value is no client
+#
+# * `webui_user`
+#   Specify the webui user and password
+#   Default value is admin with webui-password-for-bareos
 #
 # Variables
 # ----------
@@ -97,6 +105,7 @@ class bareos (
   $type_fd                  = false,
   $type_sd                  = false,
   $type_dir                 = false,
+  $type_webui               = false,
   $db_password              = $bareos::params::db_password,
   $db_password_hash         = $bareos::params::db_password_hash,
   $client_password          = $bareos::params::client_password,
@@ -105,7 +114,8 @@ class bareos (
   $storage_daemon           = $bareos::params::storage_daemon,
   $mail_hub                 = $bareos::params::mail_hub,
   $mail_group               = $bareos::params::mail_group,
-  $backup_clients           = []
+  $backup_clients           = [],
+  $webui_user               = { 'admin' => 'webui-password-for-bareos' }
 ) inherits bareos::params {
 
   # Validate parameters
@@ -113,6 +123,7 @@ class bareos (
   validate_bool($bareos::type_fd)
   validate_bool($bareos::type_sd)
   validate_bool($bareos::type_dir)
+  validate_bool($bareos::type_webui)
   validate_string($bareos::db_password)
   validate_string($bareos::db_password_hash)
   validate_string($bareos::client_password)
@@ -122,6 +133,7 @@ class bareos (
   validate_string($bareos::mail_hub)
   validate_string($bareos::mail_group)
   validate_array($bareos::backup_clients)
+  validate_hash($bareos::webui_user)
 
   # Start workflow
   if $bareos::params::linux {

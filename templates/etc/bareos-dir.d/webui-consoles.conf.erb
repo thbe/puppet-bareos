@@ -1,0 +1,20 @@
+### /etc/bareos/bareos-dir.d/webui-consoles.conf
+#
+# Preparations:
+#
+# include this configuration file in bareos-dir.conf by
+# @/etc/bareos/bareos-dir.d/webui-consoles.conf
+#
+# managed by Puppet, local changes will be overwritten
+#
+
+#
+# Restricted console used by bareos-webui
+#
+<% scope.lookupvar('bareos::webui_user').each do |user, password| -%>
+Console {
+  Name = <%= user %>
+  Password = <%= password %>
+  Profile = webui
+}
+<% end -%>

@@ -29,4 +29,8 @@ class bareos::install {
   if $bareos::type_dir {
     include bareos::install::director
   }
+
+  if $bareos::type_webui {
+    include bareos::install::webui
+  }
 }

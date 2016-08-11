@@ -41,6 +41,13 @@ class bareos::config::director {
       notify  => Service[$bareos::params::service_director],
       require => Package[$bareos::params::package_director];
 
+    $bareos::params::config_console:
+      ensure  => file,
+      mode    => '0640',
+      group   => 'bareos',
+      content => template($bareos::params::config_console_template),
+      require => Package[$bareos::params::package_console];
+
     $bareos::params::config_confd_catalog:
       ensure  => file,
       mode    => '0644',

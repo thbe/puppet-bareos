@@ -17,6 +17,7 @@ describe 'bareos', :type => :class do
           :type_fd => true,
           :type_sd => true,
           :type_dir => true,
+          :type_webui => true,
           :backup_clients => [ 'client01.example.local', 'client02.example.local' ]
         }
       }
@@ -30,16 +31,19 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_class('bareos::install::file') }
       it { is_expected.to contain_class('bareos::install::storage') }
       it { is_expected.to contain_class('bareos::install::director') }
+      it { is_expected.to contain_class('bareos::install::webui') }
       it { is_expected.to contain_class('bareos::config') }
       it { is_expected.to contain_class('bareos::config::user') }
       it { is_expected.to contain_class('bareos::config::file') }
       it { is_expected.to contain_class('bareos::config::storage') }
       it { is_expected.to contain_class('bareos::config::mysql') }
       it { is_expected.to contain_class('bareos::config::director') }
+      it { is_expected.to contain_class('bareos::config::webui') }
       it { is_expected.to contain_class('bareos::run') }
       it { is_expected.to contain_class('bareos::run::file') }
       it { is_expected.to contain_class('bareos::run::storage') }
       it { is_expected.to contain_class('bareos::run::director') }
+      it { is_expected.to contain_class('bareos::run::webui') }
 
       it { is_expected.to contain_package('bareos-common').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-filedaemon').with_ensure('installed') }
@@ -53,6 +57,7 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_package('bareos-database-mysql').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-database-tools').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-bconsole').with_ensure('installed') }
+      it { is_expected.to contain_package('bareos-webui').with_ensure('installed') }
 
       it { is_expected.to contain_package('bzip2').with_ensure('present') }
 
@@ -61,6 +66,7 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_file('/etc/bareos/bareos-fd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-sd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.conf').with_ensure('file') }
+      it { is_expected.to contain_file('/etc/bareos/bconsole.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/populate_bareos_schema.sh').with_ensure('file') }
 
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d').with_ensure('directory') }
@@ -79,6 +85,9 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/pool.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/schedule.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/storage.conf').with_ensure('file') }
+      it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/storage.conf').with_ensure('file') }
+      it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/webui-consoles.conf').with_ensure('file') }
+      it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/webui-profiles.conf').with_ensure('file') }
 
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/clients/client01.example.local.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/jobs/client01.example.local.conf').with_ensure('file') }
@@ -90,6 +99,7 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_service('bareos-fd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-sd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-dir').with( 'ensure' => 'running', 'enable' => 'true') }
+      it { is_expected.to contain_service('httpd').with( 'ensure' => 'running', 'enable' => 'true') }
 
       it { is_expected.to contain_exec('/etc/bareos/populate_bareos_schema.sh') }
       it { is_expected.to contain_exec('rpm-key-import') }
@@ -134,6 +144,12 @@ describe 'bareos', :type => :class do
         expect(content).to match('jobdefs.conf')
         expect(content).to match('/etc/bareos/bareos-dir.d/clients')
         expect(content).to match('/etc/bareos/bareos-dir.d/jobs')
+      end
+
+      it 'should generate valid content for webui-consoles.conf' do
+        content = catalogue.resource('file', '/etc/bareos/bareos-dir.d/webui-consoles.conf').send(:parameters)[:content]
+        expect(content).to match('Name = admin')
+        expect(content).to match('Password = webui-password-for-bareos')
       end
 
       case facts[:osfamily]

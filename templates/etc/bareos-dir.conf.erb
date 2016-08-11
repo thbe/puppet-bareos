@@ -31,6 +31,12 @@
 @/etc/bareos/bareos-dir.d/fileset.conf
 @/etc/bareos/bareos-dir.d/jobdefs.conf
 
+<%- if scope.lookupvar("bareos::type_webui") -%>
+### Include webui configuration ###
+@/etc/bareos/bareos-dir.d/webui-consoles.conf
+@/etc/bareos/bareos-dir.d/webui-profiles.conf
+<%- end -%>
+
 ### Local client definitions ###
 @/etc/bareos/bareos-dir.d/client-director.conf
 

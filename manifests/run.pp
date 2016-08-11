@@ -23,4 +23,8 @@ class bareos::run {
   if $bareos::type_dir {
     include bareos::run::director
   }
+
+  if $bareos::type_webui {
+    include bareos::run::webui
+  }
 }
