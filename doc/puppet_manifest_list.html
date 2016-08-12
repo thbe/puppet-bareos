@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
     
       <link rel="stylesheet" href="css/full_list.css" type="text/css" media="screen" charset="utf-8" />
     
@@ -19,53 +19,46 @@
     <base id="base_target" target="_parent" />
   </head>
   <body>
-    <script type="text/javascript" charset="utf-8">
-      var hasFrames = false;
-      try {
-        hasFrames = window.top.frames.main ? true : false;
-      } catch (e) { }
-      if (hasFrames) {
-        document.getElementById('base_target').target = 'main';
-        document.body.className = 'frames';
-      }
-    </script>
     <div id="content">
-      <h1 id="full_list_header">Puppet Manifest List</h1>
-      <div id="nav">
-        
-          <span><a target="_self" href="puppet_manifest_list.html">
-            Puppet Manifests
-          </a></span>
-        
-          <span><a target="_self" href="puppet_plugin_list.html">
-            Puppet Plugins
-          </a></span>
-        
-          <span><a target="_self" href="puppet_type_list.html">
-            Puppet Types
-          </a></span>
-        
-          <span><a target="_self" href="puppet_provider_list.html">
-            Puppet Providers
-          </a></span>
-        
-          <span><a target="_self" href="class_list.html">
-            Classes
-          </a></span>
-        
-          <span><a target="_self" href="method_list.html">
-            Methods
-          </a></span>
-        
-          <span><a target="_self" href="file_list.html">
-            Files
-          </a></span>
-        
+      <div class="fixed_header">
+        <h1 id="full_list_header">Puppet Manifest List</h1>
+        <div id="full_list_nav">
+          
+            <span><a target="_self" href="puppet_manifest_list.html">
+              Puppet Manifests
+            </a></span>
+          
+            <span><a target="_self" href="puppet_plugin_list.html">
+              Puppet Plugins
+            </a></span>
+          
+            <span><a target="_self" href="puppet_type_list.html">
+              Puppet Types
+            </a></span>
+          
+            <span><a target="_self" href="puppet_provider_list.html">
+              Puppet Providers
+            </a></span>
+          
+            <span><a target="_self" href="class_list.html">
+              Classes
+            </a></span>
+          
+            <span><a target="_self" href="method_list.html">
+              Methods
+            </a></span>
+          
+            <span><a target="_self" href="file_list.html">
+              Files
+            </a></span>
+          
+        </div>
+
+        <div id="search">Search: <input type="text" /></div>
       </div>
-      <div id="search">Search: <input type="text" /></div>
 
       <ul id="full_list" class="class">
-        <li><a class='toggle'></a> <span class='object_link'><a href="bareos.html" title="bareos (hostclass)">bareos</a></span><small class='search_info'>Top Level Namespace</small></li><ul><li><a class='toggle'></a> <span class='object_link'><a href="bareos/config.html" title="bareos::config (hostclass)">config</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/config/client.html" title="bareos::config::client (definedtype)">client</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/director.html" title="bareos::config::director (hostclass)">director</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/file.html" title="bareos::config::file (hostclass)">file</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/mysql.html" title="bareos::config::mysql (hostclass)">mysql</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/storage.html" title="bareos::config::storage (hostclass)">storage</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/user.html" title="bareos::config::user (hostclass)">user</a></span><small class='search_info'>bareos::config</small></li></ul><li><a class='toggle'></a> <span class='object_link'><a href="bareos/package.html" title="bareos::package (hostclass)">package</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/package/common.html" title="bareos::package::common (hostclass)">common</a></span><small class='search_info'>bareos::package</small></li><li><span class='object_link'><a href="bareos/package/director.html" title="bareos::package::director (hostclass)">director</a></span><small class='search_info'>bareos::package</small></li><li><span class='object_link'><a href="bareos/package/file.html" title="bareos::package::file (hostclass)">file</a></span><small class='search_info'>bareos::package</small></li><li><span class='object_link'><a href="bareos/package/repo.html" title="bareos::package::repo (hostclass)">repo</a></span><small class='search_info'>bareos::package</small></li><li><span class='object_link'><a href="bareos/package/storage.html" title="bareos::package::storage (hostclass)">storage</a></span><small class='search_info'>bareos::package</small></li></ul><li><span class='object_link'><a href="bareos/params.html" title="bareos::params (hostclass)">params</a></span><small class='search_info'>bareos</small></li><li><a class='toggle'></a> <span class='object_link'><a href="bareos/service.html" title="bareos::service (hostclass)">service</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/service/director.html" title="bareos::service::director (hostclass)">director</a></span><small class='search_info'>bareos::service</small></li><li><span class='object_link'><a href="bareos/service/file.html" title="bareos::service::file (hostclass)">file</a></span><small class='search_info'>bareos::service</small></li><li><span class='object_link'><a href="bareos/service/storage.html" title="bareos::service::storage (hostclass)">storage</a></span><small class='search_info'>bareos::service</small></li></ul></ul>
+        <li><a class='toggle'></a> <span class='object_link'><a href="bareos.html" title="bareos (hostclass)">bareos</a></span><small class='search_info'>Top Level Namespace</small></li><ul><li><a class='toggle'></a> <span class='object_link'><a href="bareos/config.html" title="bareos::config (hostclass)">config</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/config/client.html" title="bareos::config::client (definedtype)">client</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/director.html" title="bareos::config::director (hostclass)">director</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/file.html" title="bareos::config::file (hostclass)">file</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/mysql.html" title="bareos::config::mysql (hostclass)">mysql</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/storage.html" title="bareos::config::storage (hostclass)">storage</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/user.html" title="bareos::config::user (hostclass)">user</a></span><small class='search_info'>bareos::config</small></li><li><span class='object_link'><a href="bareos/config/webui.html" title="bareos::config::webui (hostclass)">webui</a></span><small class='search_info'>bareos::config</small></li></ul><li><a class='toggle'></a> <span class='object_link'><a href="bareos/install.html" title="bareos::install (hostclass)">install</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/install/common.html" title="bareos::install::common (hostclass)">common</a></span><small class='search_info'>bareos::install</small></li><li><span class='object_link'><a href="bareos/install/director.html" title="bareos::install::director (hostclass)">director</a></span><small class='search_info'>bareos::install</small></li><li><span class='object_link'><a href="bareos/install/file.html" title="bareos::install::file (hostclass)">file</a></span><small class='search_info'>bareos::install</small></li><li><span class='object_link'><a href="bareos/install/repo.html" title="bareos::install::repo (hostclass)">repo</a></span><small class='search_info'>bareos::install</small></li><li><span class='object_link'><a href="bareos/install/storage.html" title="bareos::install::storage (hostclass)">storage</a></span><small class='search_info'>bareos::install</small></li><li><span class='object_link'><a href="bareos/install/webui.html" title="bareos::install::webui (hostclass)">webui</a></span><small class='search_info'>bareos::install</small></li></ul><li><span class='object_link'><a href="bareos/params.html" title="bareos::params (hostclass)">params</a></span><small class='search_info'>bareos</small></li><li><a class='toggle'></a> <span class='object_link'><a href="bareos/run.html" title="bareos::run (hostclass)">run</a></span><small class='search_info'>bareos</small></li><ul><li><span class='object_link'><a href="bareos/run/director.html" title="bareos::run::director (hostclass)">director</a></span><small class='search_info'>bareos::run</small></li><li><span class='object_link'><a href="bareos/run/file.html" title="bareos::run::file (hostclass)">file</a></span><small class='search_info'>bareos::run</small></li><li><span class='object_link'><a href="bareos/run/storage.html" title="bareos::run::storage (hostclass)">storage</a></span><small class='search_info'>bareos::run</small></li><li><span class='object_link'><a href="bareos/run/webui.html" title="bareos::run::webui (hostclass)">webui</a></span><small class='search_info'>bareos::run</small></li></ul></ul>
 
       </ul>
     </div>

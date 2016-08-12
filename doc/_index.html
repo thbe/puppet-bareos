@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Documentation by YARD 0.8.7.6
+  Documentation by YARD 0.9.5
   
 </title>
 
@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = null;
   relpath = '';
-  framesUrl = "frames.html#!_index.html";
 </script>
 
 
@@ -26,57 +25,36 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
-  
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
 
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="puppet_manifest_list_link"
         href="puppet_manifest_list.html">
-      Puppet Manifest List
-    </a>
-  
-    <a class="full_list_link" id="puppet_plugin_list_link"
-        href="puppet_plugin_list.html">
-      Puppet Plugin List
-    </a>
-  
-    <a class="full_list_link" id="puppet_type_list_link"
-        href="puppet_type_list.html">
-      Puppet Type List
-    </a>
-  
-    <a class="full_list_link" id="puppet_provider_list_link"
-        href="puppet_provider_list.html">
-      Puppet Provider List
-    </a>
-  
-    <a class="full_list_link" id="class_list_link"
-        href="class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="class_list.html"></iframe>
 
-    <div id="content"><h1 class="noborder title">Documentation by YARD 0.8.7.6</h1>
+      <div id="content"><h1 class="noborder title">Documentation by YARD 0.9.5</h1>
 <div id="listing">
   <h1 class="alphaindex">Alphabetic Index</h1>
   
@@ -125,9 +103,9 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="bareos/package/common.html" title="bareos::package::common (hostclass)">common</a></span>
+                <span class='object_link'><a href="bareos/install/common.html" title="bareos::install::common (hostclass)">common</a></span>
                 
-                  <small>(bareos::package)</small>
+                  <small>(bareos::install)</small>
                 
               </li>
             
@@ -147,6 +125,13 @@
           <ul>
             
               <li>
+                <span class='object_link'><a href="bareos/run/director.html" title="bareos::run::director (hostclass)">director</a></span>
+                
+                  <small>(bareos::run)</small>
+                
+              </li>
+            
+              <li>
                 <span class='object_link'><a href="bareos/config/director.html" title="bareos::config::director (hostclass)">director</a></span>
                 
                   <small>(bareos::config)</small>
@@ -154,16 +139,9 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="bareos/package/director.html" title="bareos::package::director (hostclass)">director</a></span>
+                <span class='object_link'><a href="bareos/install/director.html" title="bareos::install::director (hostclass)">director</a></span>
                 
-                  <small>(bareos::package)</small>
-                
-              </li>
-            
-              <li>
-                <span class='object_link'><a href="bareos/service/director.html" title="bareos::service::director (hostclass)">director</a></span>
-                
-                  <small>(bareos::service)</small>
+                  <small>(bareos::install)</small>
                 
               </li>
             
@@ -176,16 +154,16 @@
           <ul>
             
               <li>
-                <span class='object_link'><a href="bareos/package/file.html" title="bareos::package::file (hostclass)">file</a></span>
+                <span class='object_link'><a href="bareos/install/file.html" title="bareos::install::file (hostclass)">file</a></span>
                 
-                  <small>(bareos::package)</small>
+                  <small>(bareos::install)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="bareos/service/file.html" title="bareos::service::file (hostclass)">file</a></span>
+                <span class='object_link'><a href="bareos/run/file.html" title="bareos::run::file (hostclass)">file</a></span>
                 
-                  <small>(bareos::service)</small>
+                  <small>(bareos::run)</small>
                 
               </li>
             
@@ -193,6 +171,21 @@
                 <span class='object_link'><a href="bareos/config/file.html" title="bareos::config::file (hostclass)">file</a></span>
                 
                   <small>(bareos::config)</small>
+                
+              </li>
+            
+          </ul>
+        </ul>
+      
+        
+        <ul id="alpha_I" class="alpha">
+          <li class="letter">I</li>
+          <ul>
+            
+              <li>
+                <span class='object_link'><a href="bareos/install.html" title="bareos::install (hostclass)">install</a></span>
+                
+                  <small>(bareos)</small>
                 
               </li>
             
@@ -220,13 +213,6 @@
           <ul>
             
               <li>
-                <span class='object_link'><a href="bareos/package.html" title="bareos::package (hostclass)">package</a></span>
-                
-                  <small>(bareos)</small>
-                
-              </li>
-            
-              <li>
                 <span class='object_link'><a href="bareos/params.html" title="bareos::params (hostclass)">params</a></span>
                 
                   <small>(bareos)</small>
@@ -237,14 +223,24 @@
         </ul>
       
         
+          </td><td valign='top' width="33%">
+          
+        
         <ul id="alpha_R" class="alpha">
           <li class="letter">R</li>
           <ul>
             
               <li>
-                <span class='object_link'><a href="bareos/package/repo.html" title="bareos::package::repo (hostclass)">repo</a></span>
+                <span class='object_link'><a href="bareos/install/repo.html" title="bareos::install::repo (hostclass)">repo</a></span>
                 
-                  <small>(bareos::package)</small>
+                  <small>(bareos::install)</small>
+                
+              </li>
+            
+              <li>
+                <span class='object_link'><a href="bareos/run.html" title="bareos::run (hostclass)">run</a></span>
+                
+                  <small>(bareos)</small>
                 
               </li>
             
@@ -252,26 +248,9 @@
         </ul>
       
         
-          </td><td valign='top' width="33%">
-          
-        
         <ul id="alpha_S" class="alpha">
           <li class="letter">S</li>
           <ul>
-            
-              <li>
-                <span class='object_link'><a href="bareos/service.html" title="bareos::service (hostclass)">service</a></span>
-                
-                  <small>(bareos)</small>
-                
-              </li>
-            
-              <li>
-                <span class='object_link'><a href="bareos/service/storage.html" title="bareos::service::storage (hostclass)">storage</a></span>
-                
-                  <small>(bareos::service)</small>
-                
-              </li>
             
               <li>
                 <span class='object_link'><a href="bareos/config/storage.html" title="bareos::config::storage (hostclass)">storage</a></span>
@@ -281,9 +260,16 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="bareos/package/storage.html" title="bareos::package::storage (hostclass)">storage</a></span>
+                <span class='object_link'><a href="bareos/run/storage.html" title="bareos::run::storage (hostclass)">storage</a></span>
                 
-                  <small>(bareos::package)</small>
+                  <small>(bareos::run)</small>
+                
+              </li>
+            
+              <li>
+                <span class='object_link'><a href="bareos/install/storage.html" title="bareos::install::storage (hostclass)">storage</a></span>
+                
+                  <small>(bareos::install)</small>
                 
               </li>
             
@@ -305,6 +291,35 @@
           </ul>
         </ul>
       
+        
+        <ul id="alpha_W" class="alpha">
+          <li class="letter">W</li>
+          <ul>
+            
+              <li>
+                <span class='object_link'><a href="bareos/run/webui.html" title="bareos::run::webui (hostclass)">webui</a></span>
+                
+                  <small>(bareos::run)</small>
+                
+              </li>
+            
+              <li>
+                <span class='object_link'><a href="bareos/install/webui.html" title="bareos::install::webui (hostclass)">webui</a></span>
+                
+                  <small>(bareos::install)</small>
+                
+              </li>
+            
+              <li>
+                <span class='object_link'><a href="bareos/config/webui.html" title="bareos::config::webui (hostclass)">webui</a></span>
+                
+                  <small>(bareos::config)</small>
+                
+              </li>
+            
+          </ul>
+        </ul>
+      
     </td>
   </tr>
 </table>
@@ -313,11 +328,12 @@
 
 </div>
 
-    <div id="footer">
-  Generated on Tue Jan 26 16:50:39 2016 by
+      <div id="footer">
+  Generated on Fri Aug 12 11:31:10 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.3.0).
+  0.9.5 (ruby-2.3.0).
 </div>
 
+    </div>
   </body>
 </html>
