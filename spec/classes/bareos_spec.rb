@@ -119,16 +119,12 @@ describe 'bareos', :type => :class do
         content = catalogue.resource('file', '/etc/bareos/bareos-fd.conf').send(:parameters)[:content]
         expect(content).to match('client-password-for-bareos')
         expect(content).to match('monitor-password-for-bareos')
-        expect(content).to match('FDport')
-        expect(content).to match('FDAddress')
       end
 
       it 'should generate valid content for bareos-sd.conf' do
         content = catalogue.resource('file', '/etc/bareos/bareos-sd.conf').send(:parameters)[:content]
         expect(content).to match('storage-password-for-bareos')
         expect(content).to match('monitor-password-for-bareos')
-        expect(content).to match('SDPort')
-        expect(content).to match('SDAddress')
       end
 
       it 'should generate valid content for bareos-dir.conf' do
