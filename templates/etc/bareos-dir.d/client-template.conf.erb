@@ -10,7 +10,7 @@ Client {
   Name = Client-<%= @local_client_fqdn %>
   Address = <%= @local_client_fqdn %>
   FDPort = 9102
-  Catalog = Job-Backup-Catalog
+  Catalog = MyCatalog
   Password = <%= scope.lookupvar('bareos::client_password') %>
   File Retention = <%= @local_file_retention %>
   Job Retention = <%= @local_job_retention %>

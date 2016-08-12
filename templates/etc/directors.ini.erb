@@ -1,0 +1,49 @@
+;
+; Bareos WebUI Configuration
+; File: /etc/bareos-webui/directors.ini
+;
+; managed by Puppet, local changes will be overwritten
+;
+
+;
+; Section localhost-dir
+;
+[<%= @fqdn %>]
+
+; Enable or disable section. Possible values are "yes" or "no", the default is "yes".
+enabled = "yes"
+
+; Fill in the IP-Address or FQDN of you director.
+diraddress = "<%= @fqdn %>"
+
+; Default value is 9101
+dirport	= 9101
+
+; Note: TLS has not been tested and documented, yet.
+;tls_verify_peer = false
+;server_can_do_tls = false
+;server_requires_tls = false
+;client_can_do_tls = false
+;client_requires_tls = false
+;ca_file = ""
+;cert_file = ""
+;cert_file_passphrase = ""
+;allowed_cns = ""
+
+;
+; Section another-host-dir
+;
+[another-host-dir]
+enabled = "no"
+diraddress = ""
+dirport = 9101
+; Note: TLS has not been tested and documented, yet.
+;tls_verify_peer = false
+;server_can_do_tls = false
+;server_requires_tls = false
+;client_can_do_tls = false
+;client_requires_tls = false
+;ca_file = ""
+;cert_file = ""
+;cert_file_passphrase = ""
+;allowed_cns = ""

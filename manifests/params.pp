@@ -41,6 +41,8 @@ class bareos::params {
       $config_director_template                   = 'bareos/etc/bareos-dir.conf.erb'
       $config_console                             = '/etc/bareos/bconsole.conf'
       $config_console_template                    = 'bareos/etc/bconsole.conf.erb'
+      $config_webui                               = '/etc/bareos-webui/directors.ini'
+      $config_webui_template                      = 'bareos/etc/directors.ini.erb'
       $config_confd_dir                           = '/etc/bareos/bareos-dir.d'
       $config_confd_clients_dir                   = '/etc/bareos/bareos-dir.d/clients'
       $config_confd_jobs_dir                      = '/etc/bareos/bareos-dir.d/jobs'

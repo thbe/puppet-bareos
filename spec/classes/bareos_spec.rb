@@ -67,6 +67,7 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_file('/etc/bareos/bareos-sd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bconsole.conf').with_ensure('file') }
+      it { is_expected.to contain_file('/etc/bareos-webui/directors.ini').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/populate_bareos_schema.sh').with_ensure('file') }
 
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d').with_ensure('directory') }
