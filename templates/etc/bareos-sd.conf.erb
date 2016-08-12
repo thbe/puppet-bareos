@@ -1,22 +1,29 @@
 ### /etc/bareos/bareos-sd.conf
 #
-# Bareos Storage Daemon Configuration file
+# Default Bareos Storage Daemon Configuration file
+#
+#  For Bareos release 15.2.2 (16 November 2015) -- redhat CentOS release 6.6 (Final)
+#
+# You may need to change the name of your tape drive
+#   on the "Archive Device" directive in the Device
+#   resource.  If you change the Name and/or the
+#   "Media Type" in the Device resource, please ensure
+#   that the Bareos director has corresponding changes.
 #
 # managed by Puppet, local changes will be overwritten
 #
 
-Storage {
-  Name = BackupServerStorageDaemon
-  SDPort = 9103
-  WorkingDirectory = /var/lib/bareos
-  Pid Directory = /var/lib/bareos
+Storage {                             # definition of myself
+  Name = BackupStorageDaemon
   Maximum Concurrent Jobs = 20
-  Heartbeat Interval = 5 min
-  SDAddress = <%= @fqdn %>
+
+  # remove comment from "Plugin Directory" to load plugins from specified directory.
+  # if "Plugin Names" is defined, only the specified plugins will be loaded,
+  # otherwise all storage plugins (*-sd.so) from the "Plugin Directory".
+  #
   # Plugin Directory = /usr/lib64/bareos/plugins
   # Plugin Names = ""
 }
-
 
 #
 # List Directors who are permitted to contact Storage daemon
@@ -44,12 +51,16 @@ Device {
   Name = FileStorage
   Media Type = File
   Archive Device = /srv/bareos/storage
-  LabelMedia = yes;
-  Random Access = Yes;
-  AutomaticMount = yes;
+  LabelMedia = yes;                   # lets Bareos label unlabeled media
+  Random Access = yes;
+  AutomaticMount = yes;               # when device opened, read it
   RemovableMedia = no;
   AlwaysOpen = no;
 }
+
+#
+# include additional configuration files, if required
+#
 
 # eg.
 #@/etc/bareos/bareos-sd.d/device-gluster.conf

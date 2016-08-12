@@ -7,60 +7,36 @@
 
 ### Default pool definition ###
 Pool {
-  Name = Default
-  Pool Type = Backup
-  Recycle = yes
-  AutoPrune = yes
-  Volume Retention = 40 days
-  Maximum Volume Jobs = 50
-  Maximum Volumes = 500
-}
-
-Pool {
-  Name = Catalog-Pool
-  Pool Type = Backup
-  Recycle = yes
-  AutoPrune = yes
-  Volume Retention = 80 days
-  Maximum Volume Jobs = 1
-  Label Format = Catalog-
-  Maximum Volumes = 100
-}
-
-Pool {
-  Name = Full-Pool
+  Name = Full
   Pool Type = Backup
   Recycle = yes
   AutoPrune = yes
   Volume Retention = 70 days
-  Maximum Volume Jobs = 1
-  Label Format = Full-
   Maximum Volume Bytes = 50G
   Maximum Volumes = 250
+  Label Format = "Full-"
 }
 
 Pool {
-  Name = Diff-Pool
+  Name = Differential
   Pool Type = Backup
   Recycle = yes
   AutoPrune = yes
   Volume Retention = 50 days
-  Maximum Volume Jobs = 5
-  Label Format = Diff-
   Maximum Volume Bytes = 10G
   Maximum Volumes = 250
+  Label Format = "Differential-"
 }
 
 Pool {
-  Name = Inc-Pool
+  Name = Incremental
   Pool Type = Backup
   Recycle = yes
   AutoPrune = yes
   Volume Retention = 30 days
-  Maximum Volume Jobs = 10
-  Label Format = Inc-
   Maximum Volume Bytes = 1G
   Maximum Volumes = 250
+  Label Format = "Incremental-"
 }
 
 Pool {

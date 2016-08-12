@@ -8,15 +8,11 @@
 ### Director definition ###
 Director {
   Name = BackupServerDirector
-  DIRport = 9101
   QueryFile = "/usr/lib/bareos/scripts/query.sql"
-  WorkingDirectory = /var/lib/bareos
-  Pid Directory = /var/lib/bareos
-  Maximum Concurrent Jobs = 1 # Should be 10 on powerful hardware
+  Maximum Concurrent Jobs = 10
   Password = <%= scope.lookupvar('bareos::client_password') %>
   Messages = Daemon
   Auditing = yes
-  Heartbeat Interval = 1m
   DirAddress = <%= @fqdn %>
   # Backend Directory = /usr/lib64/bareos/backends
   # Plugin Directory = /usr/lib64/bareos/plugins

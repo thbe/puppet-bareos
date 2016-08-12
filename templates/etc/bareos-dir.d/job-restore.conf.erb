@@ -7,16 +7,12 @@
 
 ### Job Definition ###
 Job {
-  Name = "Job-Restore-Files"
+  Name = "RestoreFiles"
   Type = Restore
   Client = Client-<%= @fqdn %>
   FileSet = "UnixServerComplete"
-  #FileSet = "Linux All"
   Storage = File
-  Pool = Default
-  Full Backup Pool = Full-Pool
-  Incremental Backup Pool = Inc-Pool
-  Differential Backup Pool = Diff-Pool
+  Pool = Incremental
   Messages = Standard
   Where = /srv/bareos/restores
 }

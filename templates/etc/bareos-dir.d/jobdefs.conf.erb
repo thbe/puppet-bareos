@@ -15,19 +15,10 @@ JobDefs {
   Schedule = "WeeklyCycle"
   Storage = File
   Messages = Standard
-  Pool = Default
-  Full Backup Pool = Full-Pool
-  Incremental Backup Pool = Inc-Pool
-  Differential Backup Pool = Diff-Pool
+  Pool = Incremental
   Priority = 10
-  Accurate = yes
   Write Bootstrap = "/var/lib/bareos/%c.bsr"
-#  RunScript {
-#    RunsWhen = After
-#    RunsOnFailure = yes
-#    RunsOnSuccess = yes
-#    RunsOnClient = no
-#    FailJobOnError = no
-#    Command = "/opt/bareos/bin/notify_nagios.sh '%c' '%d' '%e' '%i' '%j' '%l' '%n' '%s' '%t' '%v'"
-#  }
+  Full Backup Pool = Full
+  Differential Backup Pool = Differential
+  Incremental Backup Pool = Incremental
 }
