@@ -119,6 +119,7 @@ class bareos (
 ) inherits bareos::params {
 
   # Validate parameters
+  include ::stdlib
   validate_bool($bareos::manage_repo)
   validate_bool($bareos::type_fd)
   validate_bool($bareos::type_sd)
@@ -137,10 +138,10 @@ class bareos (
 
   # Start workflow
   if $bareos::params::linux {
-    class{'bareos::install': } ->
-    class{'bareos::config': } ~>
-    class{'bareos::run': } ->
-    Class['bareos']
+    class{'::bareos::install': }
+    -> class{'::bareos::config': }
+    ~> class{'::bareos::run': }
+    -> Class['bareos']
   }
   else {
     warning('The current operating system is not supported!')
