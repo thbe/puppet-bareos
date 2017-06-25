@@ -3,7 +3,9 @@ require 'spec_helper'
 describe 'bareos', :type => :class do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
-      let(:facts) { facts }
+      let(:facts) do
+        facts.merge( { lsbdistid: 'CentOS', lsbmajdistrelease: '7', root_home: '/root', staging_http_get: 'curl' } )
+      end
       let(:params) { { type_fd: true, type_sd: true, type_dir: true, type_webui: true, backup_clients: [ 'client01.example.local', 'client02.example.local' ] } }
 
       it { is_expected.to compile.with_all_deps }
@@ -131,12 +133,6 @@ describe 'bareos', :type => :class do
         content = catalogue.resource('file', '/etc/bareos/bareos-dir.d/webui-consoles.conf').send(:parameters)[:content]
         expect(content).to match('Name = admin')
         expect(content).to match('Password = webui-password-for-bareos')
-      end
-
-      case facts[:osfamily]
-      when 'RedHat'
-      else
-        it { is_expected.to contain_warning('The current operating system is not supported!') }
       end
     end
   end

@@ -13,18 +13,18 @@
 class bareos::run {
 
   if $bareos::type_fd {
-    include bareos::run::file
+    include ::bareos::run::file
   }
 
   if $bareos::type_sd {
-    include bareos::run::storage
+    include ::bareos::run::storage
   }
 
   if $bareos::type_dir {
-    include bareos::run::director
+    include ::bareos::run::director
   }
 
   if $bareos::type_webui {
-    include bareos::run::webui
+    include ::bareos::run::webui
   }
 }

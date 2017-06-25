@@ -16,8 +16,8 @@ class bareos::config::mysql {
     root_password    => $bareos::db_password,
     override_options => {
       'mysqld' => {
-        'max_connections' => '1024'
-        }
+        'max_connections' => '1024',
+        },
       },
     databases        => {
       'bareos' => {
@@ -54,8 +54,8 @@ class bareos::config::mysql {
     backupuser     => 'bckadm',
   }
 
-  include mysql::server::account_security
-  include mysql::server::mysqltuner
+  include ::mysql::server::account_security
+  include ::mysql::server::mysqltuner
 
   # Create schema population script
   file { $bareos::params::config_schema_script:
@@ -69,6 +69,6 @@ class bareos::config::mysql {
   exec { '/etc/bareos/populate_bareos_schema.sh':
     path   => '/bin:/sbin:/usr/bin:/usr/sbin',
     onlyif => 'test -x /etc/bareos/populate_bareos_schema.sh',
-    unless => 'test -f /etc/sysconfig/mysqldb_bareos'
+    unless => 'test -f /etc/sysconfig/mysqldb_bareos',
   }
 }

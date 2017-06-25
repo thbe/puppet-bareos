@@ -11,22 +11,22 @@
 # Sample Usage: include bareos::config
 #
 class bareos::config {
-  include bareos::config::user
+  include ::bareos::config::user
 
   if $bareos::type_fd {
-    include bareos::config::file
+    include ::bareos::config::file
   }
 
   if $bareos::type_sd {
-    include bareos::config::storage
+    include ::bareos::config::storage
   }
 
   if $bareos::type_dir {
-    include bareos::config::mysql
-    include bareos::config::director
+    include ::bareos::config::mysql
+    include ::bareos::config::director
   }
 
   if $bareos::type_webui {
-    include bareos::config::webui
+    include ::bareos::config::webui
   }
 }
