@@ -1,6 +1,5 @@
 # Puppet
 /pkg
-/spec/fixtures
 /.rspec_system
 /.bundle
 /vendor
