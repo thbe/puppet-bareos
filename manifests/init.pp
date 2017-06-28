@@ -119,7 +119,6 @@ class bareos (
 ) inherits bareos::params {
 
   # Validate parameters
-  include ::stdlib
   validate_bool($bareos::manage_repo)
   validate_bool($bareos::type_fd)
   validate_bool($bareos::type_sd)
