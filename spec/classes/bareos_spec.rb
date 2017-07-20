@@ -10,6 +10,18 @@ describe 'bareos', :type => :class do
 
       it { is_expected.to compile.with_all_deps }
 
+      # operating system specific tests
+      case facts[:osfamily]
+      when 'Debian'
+        it { is_expected.to contain_apt__source('bareos') }
+        it { is_expected.to contain_service('apache2').with( 'ensure' => 'running', 'enable' => 'true') }
+      when 'RedHat'
+        it { is_expected.to contain_file('/etc/yum.repos.d/bareos.repo').with_ensure('file') }
+        it { is_expected.to contain_service('httpd').with( 'ensure' => 'running', 'enable' => 'true') }
+        it { is_expected.to contain_exec('rpm-key-import') }
+        it { is_expected.to contain_exec('yum-update-cache') }
+      end
+
       it { is_expected.to contain_class('bareos::params') }
       it { is_expected.to contain_class('bareos::install') }
       it { is_expected.to contain_class('bareos::install::common') }
@@ -46,8 +58,6 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_package('bareos-webui').with_ensure('installed') }
 
       it { is_expected.to contain_package('bzip2').with_ensure('present') }
-
-      it { is_expected.to contain_file('/etc/yum.repos.d/bareos.repo').with_ensure('file') }
 
       it { is_expected.to contain_file('/etc/bareos/bareos-fd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-sd.conf').with_ensure('file') }
@@ -86,12 +96,8 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_service('bareos-fd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-sd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-dir').with( 'ensure' => 'running', 'enable' => 'true') }
-      it { is_expected.to contain_service('httpd').with( 'ensure' => 'running', 'enable' => 'true') }
 
       it { is_expected.to contain_exec('/etc/bareos/populate_bareos_schema.sh') }
-      it { is_expected.to contain_exec('rpm-key-import') }
-      it { is_expected.to contain_exec('yum-update-cache') }
-
       it { is_expected.to contain_user('bareos') }
       it { is_expected.to contain_group('bareos') }
 

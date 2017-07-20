@@ -4,6 +4,9 @@ fixtures:
     staging: "git://github.com/voxpupuli/puppet-staging.git"
     mysql: "git://github.com/puppetlabs/puppetlabs-mysql.git"
     concat: "git://github.com/puppetlabs/puppetlabs-concat.git"
+    apt:
+      repo: "git://github.com/puppetlabs/puppetlabs-apt"
+      branch: "4.0.0"
   symlinks:
     bareos: "#{source_dir}"
     
