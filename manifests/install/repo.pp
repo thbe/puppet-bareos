@@ -6,7 +6,9 @@ class bareos::install::repo {
 
   case $::osfamily {
     'Debian' : {
-      include apt
+      include ::apt
+
+      notify { 'apt class was just included...': }
 
       apt::source { 'bareos':
         location => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/',
@@ -15,12 +17,16 @@ class bareos::install::repo {
         key      => {
           'id'     => '0143857D9CE8C2D182FE2631F93C028C093BFBA2',
           'source' => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/Release.key',
-        }
+        },
+        notify   => Exec['apt_update']
       }
+
+      notify { 'apt::source bareos was just executed...': }
     }
     'RedHat' : {
       # Define repository
       $bareos_version = '15-2'
+
       case $::lsbdistid {
         'CentOS': {
           $repository_file = "c${::lsbmajdistrelease}_${bareos_version}.repo"
@@ -51,6 +57,9 @@ class bareos::install::repo {
         path        => '/bin:/sbin:/usr/bin:/usr/sbin',
         refreshonly => true,
       }
+    }
+    default : {
+      warning ('os not (yet) supported!')
     }
   }
 }
