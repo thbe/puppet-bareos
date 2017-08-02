@@ -18,6 +18,9 @@ class bareos::config::user {
     'RedHat' : {
       $shell = '/sbin/nologin'
     }
+    default : {
+      warning ( 'os not (yet) supported!')
+    }
   }
 
   @group { 'bareos':

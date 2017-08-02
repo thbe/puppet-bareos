@@ -486,3 +486,12 @@ Style/Encoding:
 
 Metrics/BlockLength:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Layout/IndentHeredoc:
+  Enabled: false

@@ -2,7 +2,7 @@ HOSTS:
   debian-8-x64:
     platform: debian-8-amd64
     hypervisor: docker
-    image: debian:8
+    image: puppet-agent-debian
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
@@ -11,6 +11,8 @@ HOSTS:
       - 'rm -f /usr/sbin/policy-rc.d'
       - 'systemctl mask getty@tty1.service getty-static.service'
 CONFIG:
+  type: foss
+  log_level: verbose
   trace_limit: 200
   masterless: true
 ...

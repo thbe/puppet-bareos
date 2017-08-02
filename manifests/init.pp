@@ -119,25 +119,31 @@ class bareos (
 ) inherits bareos::params {
 
   # Validate parameters
-  validate_bool($bareos::manage_repo)
-  validate_bool($bareos::type_fd)
-  validate_bool($bareos::type_sd)
-  validate_bool($bareos::type_dir)
-  validate_bool($bareos::type_webui)
-  validate_string($bareos::db_password)
-  validate_string($bareos::db_password_hash)
-  validate_string($bareos::client_password)
-  validate_string($bareos::monitor_password)
-  validate_string($bareos::storage_password)
-  validate_string($bareos::storage_daemon)
-  validate_string($bareos::mail_hub)
-  validate_string($bareos::mail_group)
-  validate_array($bareos::backup_clients)
-  validate_hash($bareos::webui_user)
+  assert_type(Boolean, $bareos::manage_repo)
+  assert_type(Boolean, $bareos::type_fd)
+  assert_type(Boolean, $bareos::type_sd)
+  assert_type(Boolean, $bareos::type_dir)
+  assert_type(Boolean, $bareos::type_webui)
+  assert_type(String, $bareos::db_password)
+  assert_type(String, $bareos::db_password_hash)
+  assert_type(String, $bareos::client_password)
+  assert_type(String, $bareos::monitor_password)
+  assert_type(String, $bareos::storage_password)
+  assert_type(String, $bareos::storage_daemon)
+  assert_type(String, $bareos::mail_hub)
+  assert_type(String, $bareos::mail_group)
+  assert_type(Array, $bareos::backup_clients)
+  assert_type(Hash, $bareos::webui_user)
+
+  # Declare 'first' stage :
+  # - first stage is run before main stage,
+  stage { 'first':
+    before => Stage['main'],
+  }
 
   # Start workflow
   if $bareos::params::linux {
-    class{'::bareos::install': }
+    class{'::bareos::install': stage => first }
     -> class{'::bareos::config': }
     ~> class{'::bareos::run': }
     -> Class['bareos']

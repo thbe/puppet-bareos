@@ -8,8 +8,6 @@ class bareos::install::repo {
     'Debian' : {
       include ::apt
 
-      notify { 'apt class was just included...': }
-
       apt::source { 'bareos':
         location => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/',
         repos    => '',
@@ -18,10 +16,8 @@ class bareos::install::repo {
           'id'     => '0143857D9CE8C2D182FE2631F93C028C093BFBA2',
           'source' => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/Release.key',
         },
-        notify   => Exec['apt_update']
+        notify   => Exec['apt_update'],
       }
-
-      notify { 'apt::source bareos was just executed...': }
     }
     'RedHat' : {
       # Define repository
