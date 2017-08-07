@@ -21,6 +21,7 @@ group :test do
   gem 'rubocop'
   gem 'simplecov'
   gem 'simplecov-console'
+  gem 'travis'
   gem 'yard'
 end
 
