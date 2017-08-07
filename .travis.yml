@@ -1,31 +1,30 @@
----
 sudo: false
 dist: c7
 language: ruby
 cache: bundler
 before_install:
-  - bundle -v
-  - rm Gemfile.lock || true
-  - gem update --system
-  - gem update bundler
-  - gem --version
-  - bundle -v
+- bundle -v
+- rm Gemfile.lock || true
+- gem update --system
+- gem update bundler
+- gem --version
+- bundle -v
 script:
-  - 'bundle exec rake $CHECK'
+- bundle exec rake $CHECK
 matrix:
   fast_finish: true
   include:
   - rvm: 2.1.9
-    bundler_args: --without system_tests development
+    bundler_args: "--without system_tests development"
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: 2.2.7
-    bundler_args: --without system_tests development
+    bundler_args: "--without system_tests development"
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: 2.3.4
-    bundler_args: --without system_tests development
+    bundler_args: "--without system_tests development"
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: 2.4.1
-    bundler_args: --without system_tests development
+    bundler_args: "--without system_tests development"
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: default
     bundler_args:
@@ -35,12 +34,12 @@ matrix:
 branches:
   only:
   - master
-  - /^v\d/
+  - "/^v\\d/"
 notifications:
   email:
-    - project@bendler-net.de
+  - project@bendler-net.de
 deploy:
   provider: puppetforge
-  user: "thbe"
+  user: thbe
   password:
-    secure: "dAtn+VmErwGmxx1biP/nyv4rv5l0mhjlWjs0AQxk8tA//uBZ29vMbGO+aOI+0unk32uU0A0/EUhyvLictn2eEC8C06CF+n0J0kHEPM7dyKwLTkSY+HE8c7LwjzK1Kcqf5D7s0gSq4YBc2I3bFrn3WSdd4cKc7l/BxKT+0kRB+kT5auwF9p0ZvAbrj6AJwDeC4+8fLEzn3hrxPRRCnvUediGrjY5IqwayUQ1MmNYYT4W1kSMKW4D1OwooL1AW1p4+WX1pLCch3zjW4I5336UfDVDfHG4A1LFtL+29gV1MoMI/42+nwOidmY1iUhXE1Ar/Vp2gX3zpnGnXc194ms1FMA2PUr/zYTq0MkuRsZCPNcJBNtGpzyCM98tA/ERcG6qDrW2++Do7IS3VrSHFGSX9p5WvRauoLeq5VbMmlP3jPgFgtIX6U5z+1eLkfa84b3Y0C2UXJRgctiZFKwKMgBAOTmRCG5F0jfCfk/2dbecVyg2yGJq2Eh0qp0OnGCNM74Z/hdd51er3kGXnO5LsjDP12epiPUKjd80D2z9se0bDO/4TS+JDBfJPQ6LbFfe700tQvVc7UY7Sq7CeqCy5WTCXtm79gkaIYqIGY6j5wmA5GOYGtI/n4WrNmk+MXvjH0zKVdW8hHugCFGiFrTjOjXyOU3fdAMtU1VEt2GBRwAwRROs="
+  - secure: QTNsy+l32K7+RoT3f6eBDfuKtgtGjeiMXeRF0KqWjurcf3+NFPWQ0sju3NJsQ+EALLum9eJqaN0woqbdRPwvVUBqk4quNnPsSZmS3EzDHZ0pSl3B23GEZRiL9HC7LGJmKgU6Fvs2AZE2PgMlqRUphuG716sZ8WuSOQITTLiwFCnA1obMSmJ+axYc7YZ605JUOA+ADzEr4rbOpZejxTdD2+Se+OnQ7+JZ6X/ec1XQllCZHs89pkrFdXDQLGMvvR2K90DDqGXiFDgkgeJ9znOo8fpv58/7SJjWKwSOH7acKWRpSqizPgOV6Ly6TFnp3Ku0Wz5VFvrleISS6FUdiygHqWaJ8J3UMDcslMmHqo+MDrQBX9pznqnBHeiv0DzuNMwYvAxrPULraNZe8h3yCOdc8/T/zWmqsLxdMeY/fn1wdRHAtUSZK1CPXaVxfi65H2fVQuNwIkhNrgH7kTICFEdwYqdTZhUzRQZhUkLXr7DpzllYNJEv8Ui+ofNsr0vDuMPFV9OumD04Fy0eC+yZOZDDKDsp2V73cIAboDWrvIYjkk6BTz/2LEcEMBelW+6yRfCSBbUQUNEnNFVGY0aReZGKyiHNzVEj6Sp6rRkeTi+Da2XwoumD1fBgW70OLtFVbL8WLnzBiGyF2mY0vhUg91aUgI811sA/VRN7tBgWf2jxU5E=
