@@ -30,7 +30,7 @@ matrix:
     bundler_args:
     sudo: required
     services: docker
-    env: BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+    env: BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
 branches:
   only:
   - master
@@ -42,4 +42,6 @@ deploy:
   provider: puppetforge
   user: thbe
   password:
-    secure: fY+7CJAu6MpWQ6fpEPXtv0W9QTg8cjtdj5doDxW9XEFQugU1WcZ/LipyynZUGwXLdg/IniujmolRtlk+VzXrAlrq6zAjcER4TwxdR7vpC2STZdEmvl+KeeSMXgnU00opyO1SE5vTvQ720JK2S1aFnAdejgENl5CmEwCxr0MDTMg8Lgj6W4O2Lef+oGsN9x7KoE4mRvaO6A6oo34OCqmEFD7LhsSjoqKshhokn6xT0PPrAoYNvAl+WMTRUyM9fvfb2MZpa0BlfwJm3xXnSyR74IhK23X6b4GJnr+HRUTnffnRlKcH8GpDtyjoFCZ/qi5YT8xp2GRsDcH1Fp8Rtyf/0GyxOw07uK0Kq0QJ9PECdzGyeYQBF9U26BQNVlEAiKY1BFSXjWm05ITBxUYETfyzArkTMVncfcXOT5dtMB3sA3mq58J6G0WFjKEzTaN8eOwMiQdnOJ69G+uznO4p1w+ESBqoB3YQcJo8V0ACbieADJCmQIcC52q4EFzZk4oa7ZTxFlE0n38dJ/nHcS3MmIrUtyzGPpsEWSzjN5ultXFFaJofC5BadDjErq/xppCmTJhXXXby+WWHuiwafD89BTMQKBuCWA+wE5QuQAI5w9lm89x/ZLknOhMFRvOtvTfDyYUu7kWIr+OEfPKH25GilLKkpoayKC8AxNSFik3uLeRjEtc=
+    secure: DNIfzKO3c6soZdIOrcMacGovJi4H4nImRcFmhrvbO6syo4Nuq2W48sYJ/RAFYvN0eiiVCPvRgUIwbJGb/D6XsvGIfH6ZXbolPnEGWby76E7Oi/SIFswDaCEd7nQNG4mPnUwXSb+rHHzg0VPGes94U6/3M/CkTavS7owgQE1bg1tp4a4SQTLNjOt9xC8LcXSJ8bbTrTivXlaxdkegUVM3FKsvzu6PeL32KAPI/THLeClbB+VcREGkoVzDx6cXGCL69cGgNTbmFeyFNWhYKKS0Oynnx0MLLBA3GC6Q8brXerXZhi58Tugq++kAaI3M18ufynrJIfR1BnwDj3l5aIgPlEf/y2dEnEX0TK01A+4E5fm1qeW47iJFNCFjAw8yPzip9iD6SLVI2Vc3ICKB9sJq4vGtdQkero6F+128J7xWUykvCc08afBvq2Wcuk1zYglJd9wkCL6RubnWHFANo9F6xlvfe+4j/DOJlmk19eGFZvKX9CDM7BpskVcP/ynKp6OYPo+CijB8har81cTUD0NMRJUm2g+WfUYl3Yw3hhm6zVZqGO+9F8jUGijbZwtS/G0yZy/zf8BgXZRcdKaY45C9FtkPHKtJhsei9yzjbGnCyQrYIB+DNSj2CKD7bJ0IbJ2ioEQYYJTJ+bBoVXDlXIH5n+lNVSlu3vMCIun7GOvPmyA=
+  on:
+    condition: "$DEPLOY_TO_FORGE = yes"
