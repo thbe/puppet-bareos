@@ -11,6 +11,18 @@
 # Sample Usage: include bareos::config::user
 #
 class bareos::config::user {
+  case $::osfamily {
+    'Debian' : {
+      $shell = '/usr/sbin/nologin'
+    }
+    'RedHat' : {
+      $shell = '/sbin/nologin'
+    }
+    default : {
+      warning ( 'os not (yet) supported!')
+    }
+  }
+
   @group { 'bareos':
     ensure => present;
   }
@@ -20,7 +32,7 @@ class bareos::config::user {
     gid        => 'bareos',
     comment    => 'bareos Backup System',
     home       => '/var/lib/bareos',
-    shell      => '/sbin/nologin',
+    shell      => $shell,
     managehome => false,
     password   => '!!',
     require    => Group['bareos'];

@@ -10,6 +10,22 @@ describe 'bareos', :type => :class do
 
       it { is_expected.to compile.with_all_deps }
 
+      # operating system specific tests
+      case facts[:osfamily]
+      when 'Debian'
+        it { is_expected.to contain_apt__source('bareos') }
+        it { is_expected.to contain_service('apache2').with( 'ensure' => 'running', 'enable' => 'true') }
+        it { is_expected.to contain_exec('grant_bareos_privileges') }
+        it { is_expected.to contain_exec('make_bareos_tables') }
+      when 'RedHat'
+        it { is_expected.to contain_file('/etc/yum.repos.d/bareos.repo').with_ensure('file') }
+        it { is_expected.to contain_file('/etc/bareos/populate_bareos_schema.sh').with_ensure('file') }
+        it { is_expected.to contain_service('httpd').with( 'ensure' => 'running', 'enable' => 'true') }
+        it { is_expected.to contain_exec('rpm-key-import') }
+        it { is_expected.to contain_exec('yum-update-cache') }
+        it { is_expected.to contain_exec('/etc/bareos/populate_bareos_schema.sh') }
+      end
+
       it { is_expected.to contain_class('bareos::params') }
       it { is_expected.to contain_class('bareos::install') }
       it { is_expected.to contain_class('bareos::install::common') }
@@ -47,14 +63,11 @@ describe 'bareos', :type => :class do
 
       it { is_expected.to contain_package('bzip2').with_ensure('present') }
 
-      it { is_expected.to contain_file('/etc/yum.repos.d/bareos.repo').with_ensure('file') }
-
       it { is_expected.to contain_file('/etc/bareos/bareos-fd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-sd.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos/bconsole.conf').with_ensure('file') }
       it { is_expected.to contain_file('/etc/bareos-webui/directors.ini').with_ensure('file') }
-      it { is_expected.to contain_file('/etc/bareos/populate_bareos_schema.sh').with_ensure('file') }
 
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d').with_ensure('directory') }
       it { is_expected.to contain_file('/etc/bareos/bareos-dir.d/clients').with_ensure('directory') }
@@ -86,11 +99,6 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_service('bareos-fd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-sd').with( 'ensure' => 'running', 'enable' => 'true') }
       it { is_expected.to contain_service('bareos-dir').with( 'ensure' => 'running', 'enable' => 'true') }
-      it { is_expected.to contain_service('httpd').with( 'ensure' => 'running', 'enable' => 'true') }
-
-      it { is_expected.to contain_exec('/etc/bareos/populate_bareos_schema.sh') }
-      it { is_expected.to contain_exec('rpm-key-import') }
-      it { is_expected.to contain_exec('yum-update-cache') }
 
       it { is_expected.to contain_user('bareos') }
       it { is_expected.to contain_group('bareos') }
@@ -101,6 +109,8 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_Mysql_database('bareos') }
       it { is_expected.to contain_Mysql_grant('bareos@localhost/bareos.*') }
       it { is_expected.to contain_Mysql_user('bareos@localhost') }
+
+      it { is_expected.to contain_stage('first') }
 
       it 'should generate valid content for bareos-fd.conf' do
         content = catalogue.resource('file', '/etc/bareos/bareos-fd.conf').send(:parameters)[:content]

@@ -57,18 +57,48 @@ class bareos::config::mysql {
   include ::mysql::server::account_security
   include ::mysql::server::mysqltuner
 
-  # Create schema population script
-  file { $bareos::params::config_schema_script:
-    ensure  => file,
-    mode    => '0755',
-    source  => $bareos::params::config_schema_script_file,
-    require => Package[$bareos::params::package_database_mysql];
-  }
+  case $::osfamily {
+    'Debian': {
+      $script_directory = '/usr/lib/bareos/scripts'
+      $db_parameters = "--password=${bareos::params::db_password}"
+      $db_type = 'mysql'
 
-  # Execute schema population script
-  exec { '/etc/bareos/populate_bareos_schema.sh':
-    path   => '/bin:/sbin:/usr/bin:/usr/sbin',
-    onlyif => 'test -x /etc/bareos/populate_bareos_schema.sh',
-    unless => 'test -f /etc/sysconfig/mysqldb_bareos',
+      # Setting up the Bareos database tables
+      # exec { 'create_bareos_database':
+      #   command => "$script_directory/create_bareos_database ${db_type} ${db_parameters}",
+      #   require => Package[$bareos::params::package_database_mysql]
+      # }
+
+      exec { 'make_bareos_tables':
+        command     => "${script_directory}/make_bareos_tables ${db_type} ${db_parameters}",
+        subscribe   => Package[$bareos::params::package_database_mysql],
+        refreshonly => true,
+      }
+
+      exec { 'grant_bareos_privileges':
+        command     => "${script_directory}/grant_bareos_privileges ${db_type} ${db_parameters}",
+        subscribe   => Package[$bareos::params::package_database_mysql],
+        refreshonly => true,
+      }
+    }
+    'RedHat': {
+      # Create schema population script
+      file { $bareos::params::config_schema_script:
+        ensure  => file,
+        mode    => '0755',
+        source  => $bareos::params::config_schema_script_file,
+        require => Package[$bareos::params::package_database_mysql];
+      }
+
+      # Execute schema population script
+      exec { '/etc/bareos/populate_bareos_schema.sh':
+        path   => '/bin:/sbin:/usr/bin:/usr/sbin',
+        onlyif => 'test -x /etc/bareos/populate_bareos_schema.sh',
+        unless => 'test -f /etc/sysconfig/mysqldb_bareos',
+      }
+    }
+    default: {
+      warning('The current operating system is not supported!')
+    }
   }
 }

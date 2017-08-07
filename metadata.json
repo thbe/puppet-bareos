@@ -1,20 +1,22 @@
 {
-  "name": "thbe-bareos",
-  "version": "0.3.3",
-  "author": "thbe",
-  "summary": "Install a Bareos enterprise class backup instance",
-  "license": "GPL-3.0",
-  "source": "https://github.com/thbe/puppet-bareos.git",
-  "project_page": "https://github.com/thbe/puppet-bareos",
-  "issues_url": "https://github.com/thbe/puppet-bareos/issues",
-  "operatingsystem_support": [
-    { "operatingsystem": "RedHat", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
-    { "operatingsystem": "OracleLinux", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
-    { "operatingsystem": "CentOS", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] }
-  ],
-  "dependencies": [
-    { "name": "puppetlabs-stdlib", "version_requirement": ">= 4.13.1 < 5.0.0" },
-    { "name": "puppetlabs-mysql", "version_requirement": ">= 2.3.0 < 4.0.0" },
-    { "name": "puppetlabs-concat", "version_requirement": ">= 1.2.0 < 5.0.0" }
-  ]
+    "name": "thbe-bareos",
+    "version": "0.3.3",
+    "author": "thbe",
+    "summary": "Install a Bareos enterprise class backup instance",
+    "license": "GPL-3.0",
+    "source": "https://github.com/thbe/puppet-bareos.git",
+    "project_page": "https://github.com/thbe/puppet-bareos",
+    "issues_url": "https://github.com/thbe/puppet-bareos/issues",
+    "operatingsystem_support": [
+        { "operatingsystem": "RedHat", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
+        { "operatingsystem": "OracleLinux", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
+        { "operatingsystem": "CentOS", "operatingsystemrelease": [ "5.0", "6.0", "7.0" ] },
+        { "operatingsystem": "Debian", "operatingsystemrelease": [ "7", "8" ] }
+    ],
+    "dependencies": [
+        { "name": "puppetlabs-stdlib", "version_requirement": ">= 4.13.1 < 5.0.0" },
+        { "name": "puppetlabs-mysql", "version_requirement": ">= 2.3.0 < 4.0.0" },
+        { "name": "puppetlabs-concat", "version_requirement": ">= 1.2.0 < 5.0.0" },
+        { "name": "puppetlabs-apt", "version_requirement": ">= 1.2.0 < 5.0.0" }
+    ]
 }

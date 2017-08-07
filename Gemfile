@@ -2,6 +2,7 @@ source ENV['GEM_SOURCE'] || "https://rubygems.org"
 
 group :test do
   gem 'coveralls'
+  gem 'facter'
   gem 'json_pure'
   gem 'metadata-json-lint'
   gem 'puppet'
