@@ -4,10 +4,11 @@ describe 'bareos' do
   let(:manifest) {
     <<-EOS
 class { 'bareos':
-  type_dir   => true,
-  type_fd    => true,
-  type_sd    => true,
-  type_webui => true,
+  type_dir       => true,
+  type_fd        => true,
+  type_sd        => true,
+  type_webui     => true,
+  backup_clients => [ 'client1.example.local', 'client2.example.local' ],
 }
 EOS
   }
@@ -25,8 +26,14 @@ EOS
     it { should be_listening }
   end
 
-  describe service('bareos-dir') do
-    it { should be_running }
+  describe file('/etc/bareos/bareos-dir.d/clients/client1.example.local.conf') do
+    it { should be_file }
+    it { should exist }
+  end
+
+  describe file('/etc/bareos/bareos-dir.d/clients/client2.example.local.conf') do
+    it { should be_file }
+    it { should exist }
   end
 
   if os[:family] == 'debian'
@@ -43,12 +50,32 @@ EOS
       it { should be_running }
     end
 
-    describe service('bareos-filedaemon') do
-      it { should be_running }
+    if os[:release] == '7'
+      describe service('bareos-director') do
+        it { should be_running }
+      end
+
+      describe service('bareos-fd') do
+        it { should be_running }
+      end
+
+      describe service('bareos-sd') do
+        it { should be_running }
+      end
     end
 
-    describe service('bareos-storage') do
-      it { should be_running }
+    if os[:release] == '8'
+      describe service('bareos-dir') do
+        it { should be_running }
+      end
+
+      describe service('bareos-filedaemon') do
+        it { should be_running }
+      end
+
+      describe service('bareos-storage') do
+        it { should be_running }
+      end
     end
   end
 
@@ -63,6 +90,10 @@ EOS
 
     describe service('httpd') do
       it { should be_enabled }
+      it { should be_running }
+    end
+
+    describe service('bareos-dir') do
       it { should be_running }
     end
 

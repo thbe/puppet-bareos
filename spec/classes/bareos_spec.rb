@@ -4,7 +4,7 @@ describe 'bareos', :type => :class do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts.merge( { lsbdistid: 'CentOS', lsbmajdistrelease: '7', root_home: '/root', staging_http_get: 'curl' } )
+        facts.merge( { root_home: '/root', staging_http_get: 'curl' } )
       end
       let(:params) { { type_fd: true, type_sd: true, type_dir: true, type_webui: true, backup_clients: [ 'client01.example.local', 'client02.example.local' ] } }
 
@@ -17,6 +17,12 @@ describe 'bareos', :type => :class do
         it { is_expected.to contain_service('apache2').with( 'ensure' => 'running', 'enable' => 'true') }
         it { is_expected.to contain_exec('grant_bareos_privileges') }
         it { is_expected.to contain_exec('make_bareos_tables') }
+        case facts[:lsbmajdistrelease]
+        when '7'
+          it { is_expected.to contain_package('bareos-storage-glusterfs').with_ensure('absent') }
+        when '8'
+          it { is_expected.to contain_package('bareos-storage-glusterfs').with_ensure('installed') }
+        end
       when 'RedHat'
         it { is_expected.to contain_file('/etc/yum.repos.d/bareos.repo').with_ensure('file') }
         it { is_expected.to contain_file('/etc/bareos/populate_bareos_schema.sh').with_ensure('file') }
@@ -24,6 +30,7 @@ describe 'bareos', :type => :class do
         it { is_expected.to contain_exec('rpm-key-import') }
         it { is_expected.to contain_exec('yum-update-cache') }
         it { is_expected.to contain_exec('/etc/bareos/populate_bareos_schema.sh') }
+        it { is_expected.to contain_package('bareos-storage-glusterfs').with_ensure('installed') }
       end
 
       it { is_expected.to contain_class('bareos::params') }
@@ -52,7 +59,6 @@ describe 'bareos', :type => :class do
       #it { is_expected.to contain_package('bareos-filedaemon-glusterfs-plugin').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-storage').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-storage-fifo').with_ensure('installed') }
-      it { is_expected.to contain_package('bareos-storage-glusterfs').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-storage-tape').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-director').with_ensure('installed') }
       it { is_expected.to contain_package('bareos-database-common').with_ensure('installed') }
@@ -109,8 +115,6 @@ describe 'bareos', :type => :class do
       it { is_expected.to contain_Mysql_database('bareos') }
       it { is_expected.to contain_Mysql_grant('bareos@localhost/bareos.*') }
       it { is_expected.to contain_Mysql_user('bareos@localhost') }
-
-      it { is_expected.to contain_stage('first') }
 
       it 'should generate valid content for bareos-fd.conf' do
         content = catalogue.resource('file', '/etc/bareos/bareos-fd.conf').send(:parameters)[:content]
