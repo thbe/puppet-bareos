@@ -35,7 +35,7 @@ matrix:
     bundler_args: "--without test development"
     sudo: required
     services: docker
-    env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent
+    env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args: "--without test development"
     sudo: required
