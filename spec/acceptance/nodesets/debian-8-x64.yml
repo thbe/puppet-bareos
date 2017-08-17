@@ -2,7 +2,7 @@ HOSTS:
   debian-8-x64:
     platform: debian-8-amd64
     hypervisor: docker
-    image: puppet-agent-debian
+    image: debian:8
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
