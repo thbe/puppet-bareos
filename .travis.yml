@@ -30,7 +30,17 @@ matrix:
     bundler_args:
     sudo: required
     services: docker
-    env: BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
+    env: BEAKER_set=default BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+  - rvm: default
+    bundler_args:
+    sudo: required
+    services: docker
+    env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+  - rvm: default
+    bundler_args:
+    sudo: required
+    services: docker
+    env: BEAKER_set=debian-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
 branches:
   only:
   - master

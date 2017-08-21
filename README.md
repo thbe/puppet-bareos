@@ -45,7 +45,7 @@ This module can install the:
 
 * bareos director
 * bareos storage daemon
-* bareos file descriptor
+* bareos file daemon
 
 ### bareos director
 
@@ -73,7 +73,7 @@ class { 'bareos':
 }
 ```
 
-### bareos file descriptor
+### bareos file daemon
 
 ```puppet
 class { 'bareos':
@@ -89,7 +89,7 @@ Here is the list of parameters used by this module.
 
 #### `$type_fd`
 
-Specify if file descriptor components should be installed
+Specify if file daemon components should be installed
 Default value is false
 
 #### `$type_sd`
@@ -154,6 +154,8 @@ This module has been built on and tested against Puppet 4.0 and higher.
 The module has been tested on:
 
 * CentOS Linux 7
+* Debian 8
+* Debian 7
 
 Testing on other platforms has been light and cannot be guaranteed.
 

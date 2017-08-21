@@ -135,15 +135,11 @@ class bareos (
   assert_type(Array, $bareos::backup_clients)
   assert_type(Hash, $bareos::webui_user)
 
-  # Declare 'first' stage :
-  # - first stage is run before main stage,
-  stage { 'first':
-    before => Stage['main'],
-  }
-
   # Start workflow
   if $bareos::params::linux {
-    class{'::bareos::install': stage => first }
+    Package <| |> -> Class['::bareos::config::director']
+
+    class{'::bareos::install': }
     -> class{'::bareos::config': }
     ~> class{'::bareos::run': }
     -> Class['bareos']

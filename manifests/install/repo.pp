@@ -8,13 +8,18 @@ class bareos::install::repo {
     'Debian' : {
       include ::apt
 
+      Apt::Key <| |> -> Exec['apt_update']
+      Apt::Source <| |> -> Exec['apt_update']
+
+      Exec['apt_update'] -> Package <| |>
+
       apt::source { 'bareos':
-        location => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/',
+        location => "http://download.bareos.org/bareos/release/latest/Debian_${::lsbmajdistrelease}.0/",
         repos    => '',
         release  => '/',
         key      => {
           'id'     => '0143857D9CE8C2D182FE2631F93C028C093BFBA2',
-          'source' => 'http://download.bareos.org/bareos/release/latest/Debian_8.0/Release.key',
+          'source' => "http://download.bareos.org/bareos/release/latest/Debian_${::lsbmajdistrelease}.0/Release.key",
         },
         notify   => Exec['apt_update'],
       }
