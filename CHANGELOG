@@ -1,3 +1,6 @@
+0.4.3 2017-08-27 thbe <project@bendler-net.de>
+ * Optimize travis.yml
+
 0.4.2 2017-08-27 thbe <project@bendler-net.de>
  * Add puppet stings supprt
  * Add beaker for c6 and c7
