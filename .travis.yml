@@ -29,8 +29,7 @@ matrix:
     env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args: ''
-    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
-      DEPLOY_TO_FORGE=yes
+    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
 branches:
   only:
   - master
@@ -44,5 +43,6 @@ deploy:
   password:
     secure: FCeU8DPOLDq8tuiZBf5MPIOy0I7CSFABo0wlkn/kKNycYcOSDNKmA1hj1XiifkVCDNHXR5YjSbJD6zIGXEVLibgi6dlGw8DaqnMp1cyzmWwrFQB70BHA/HQlXuQ5VOIQnmRLMj20+9v7x12X/SprCRs2o3Qedxf6f+s07ZkNo5pq9hWQnfyzCJUKW9oJZLMS1uzPCVDK+D9uDHanySldqlE+3GD7k5AJYwos1hqMOamSXFjlGIs35pB3q6bR9fAwkTl1pAheD4L7lrla5bDT4mixLL3OxAHomdj/Gh6NQQfi0WkZpS4hl+g/ZR09yUKroSdm4kfYOiemK078xOoUSfShbHx6gpu0CdI4C42PkF8DmC2JQMVr4G6/HuosODrkg3Vgu1eelHquEssMonL76yWQt/KDF9oQt25L7trETylvLd8pyygBJ71vwgVtxVWN5m3UPX6ZYOnYduw5PGK+Fdc7htAe37EOggBAx2DtggXrvEEoOlfiJYkOpwy+T+EU0M8jKT6rhqKwSs9l67IJ+2YPMNjwxLOlK6hia2hEb6r3ODLA8LUyjQn+LLfB+fAupXIQXW5XQAgh0JBMgatJNtQzVuOL3Sz3n2uC4Wvanq+SxCZmyL+rfxF1B64Oyw2JkKHnshp+aahwvSPNbwOqxEkiGE2oKajnRp7IrjwchBg=
   on:
+    tags: true
     all_branches: true
     condition: "$DEPLOY_TO_FORGE = yes"
