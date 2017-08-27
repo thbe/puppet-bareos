@@ -29,6 +29,7 @@ matrix:
   - rvm: default
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: default
+    bundler_args: ""
     env: BEAKER_set=debian-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args: ""
