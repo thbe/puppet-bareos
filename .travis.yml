@@ -1,7 +1,9 @@
-sudo: false
-dist: c7
+sudo: required
+dist: trusty
+services: docker
 language: ruby
 cache: bundler
+
 before_install:
 - bundle -v
 - rm Gemfile.lock || true
@@ -9,8 +11,10 @@ before_install:
 - gem update bundler
 - gem --version
 - bundle -v
+
 script:
 - bundle exec rake $CHECK
+
 matrix:
   fast_finish: true
   include:
@@ -28,26 +32,26 @@ matrix:
     env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes CHECK=test
   - rvm: default
     bundler_args:
-    sudo: required
-    services: docker
-    env: BEAKER_set=default BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+    env: BEAKER_set=debian-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args:
-    sudo: required
-    services: docker
     env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args:
-    sudo: required
-    services: docker
-    env: BEAKER_set=debian-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
+    env: BEAKER_set=centos-6-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+  - rvm: default
+    bundler_args:
+    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+
 branches:
   only:
   - master
   - "/^v\\d/"
+
 notifications:
   email:
   - project@bendler-net.de
+
 deploy:
   provider: puppetforge
   deploy:
@@ -58,4 +62,3 @@ deploy:
   on:
     tags: true
     all_branches: true
-    condition: "$DEPLOY_TO_FORGE = yes"
