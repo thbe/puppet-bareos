@@ -29,7 +29,7 @@ matrix:
     env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args: ''
-    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
 branches:
   only:
   - master
@@ -39,11 +39,12 @@ notifications:
   - project@bendler-net.de
 deploy:
   provider: puppetforge
+  user: "thbe"
+  password:
+    secure: "ZoK7z9wmluhi1e36eBGRzcdFQBkJQIBU6mynbwLBC4sDzOj0E0t8YJ8FIxl3ol67ocTm+iy4CiJTKm3BQtQ6j3qUHMP4MuR2T+WL78CXvvU/pvhi9ZD5nTRh18MRhgEtxws/5CmESJoPY8y7ETCRnycBFnL0EHDVnmI1ZVnEaPm//GZ+kEBzYett4PDNazHueCbYkmorZn7IiJch820/wMdTKW1n8iSZFrXuoe1xCa9kF1HWPMCnAjIFWL8Frr59zw48yiyvPcoQ6xlwMKnAFBeic3BvwJlq1Dl5TTAxCule9NDQlEgqL11o1xaNhfChFjBkEEoLBT+KzkECP03tfx/hm7PhY4RJ13c05OM7RSj/kscjek4Sb0WzONJz04D9dYhr3oD+pYo16M6dDWRsG/LcARPwqgKl+D79TcG9ojEvXbiCD0IsakMBoVwFa6jzIU+0GZVEadWGZ1Ip9uuya6Z3132i/lWVm/maqn60CJH/4pxG2N2H0xTAGB0Qvo6RrPSaL61iz8D+IiBgGsIRZouNfZtA714Ylcn6FMfwqioQpyWijbHpoaSyDGf33XZJYgm7CTyd2hBOoNDijyQW7V+b3EteSAQ3Js8a2IRLivfZvLSM8WYUMgigVAhppeeoXPVLDJWcQTDVAnjfXyK8QnzY5CinYx2mM8vRsd68ArE="
   deploy:
     branch: master
-  user: thbe
-  password:
-    secure: ZoK7z9wmluhi1e36eBGRzcdFQBkJQIBU6mynbwLBC4sDzOj0E0t8YJ8FIxl3ol67ocTm+iy4CiJTKm3BQtQ6j3qUHMP4MuR2T+WL78CXvvU/pvhi9ZD5nTRh18MRhgEtxws/5CmESJoPY8y7ETCRnycBFnL0EHDVnmI1ZVnEaPm//GZ+kEBzYett4PDNazHueCbYkmorZn7IiJch820/wMdTKW1n8iSZFrXuoe1xCa9kF1HWPMCnAjIFWL8Frr59zw48yiyvPcoQ6xlwMKnAFBeic3BvwJlq1Dl5TTAxCule9NDQlEgqL11o1xaNhfChFjBkEEoLBT+KzkECP03tfx/hm7PhY4RJ13c05OM7RSj/kscjek4Sb0WzONJz04D9dYhr3oD+pYo16M6dDWRsG/LcARPwqgKl+D79TcG9ojEvXbiCD0IsakMBoVwFa6jzIU+0GZVEadWGZ1Ip9uuya6Z3132i/lWVm/maqn60CJH/4pxG2N2H0xTAGB0Qvo6RrPSaL61iz8D+IiBgGsIRZouNfZtA714Ylcn6FMfwqioQpyWijbHpoaSyDGf33XZJYgm7CTyd2hBOoNDijyQW7V+b3EteSAQ3Js8a2IRLivfZvLSM8WYUMgigVAhppeeoXPVLDJWcQTDVAnjfXyK8QnzY5CinYx2mM8vRsd68ArE=
   on:
     tags: true
     all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
