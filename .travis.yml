@@ -29,7 +29,8 @@ matrix:
     env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
   - rvm: default
     bundler_args: ''
-    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
+    env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+      DEPLOY_TO_FORGE=yes
 branches:
   only:
   - master
@@ -39,12 +40,9 @@ notifications:
   - project@bendler-net.de
 deploy:
   provider: puppetforge
-  user: "thbe"
+  user: thbe
   password:
-    secure: "ZoK7z9wmluhi1e36eBGRzcdFQBkJQIBU6mynbwLBC4sDzOj0E0t8YJ8FIxl3ol67ocTm+iy4CiJTKm3BQtQ6j3qUHMP4MuR2T+WL78CXvvU/pvhi9ZD5nTRh18MRhgEtxws/5CmESJoPY8y7ETCRnycBFnL0EHDVnmI1ZVnEaPm//GZ+kEBzYett4PDNazHueCbYkmorZn7IiJch820/wMdTKW1n8iSZFrXuoe1xCa9kF1HWPMCnAjIFWL8Frr59zw48yiyvPcoQ6xlwMKnAFBeic3BvwJlq1Dl5TTAxCule9NDQlEgqL11o1xaNhfChFjBkEEoLBT+KzkECP03tfx/hm7PhY4RJ13c05OM7RSj/kscjek4Sb0WzONJz04D9dYhr3oD+pYo16M6dDWRsG/LcARPwqgKl+D79TcG9ojEvXbiCD0IsakMBoVwFa6jzIU+0GZVEadWGZ1Ip9uuya6Z3132i/lWVm/maqn60CJH/4pxG2N2H0xTAGB0Qvo6RrPSaL61iz8D+IiBgGsIRZouNfZtA714Ylcn6FMfwqioQpyWijbHpoaSyDGf33XZJYgm7CTyd2hBOoNDijyQW7V+b3EteSAQ3Js8a2IRLivfZvLSM8WYUMgigVAhppeeoXPVLDJWcQTDVAnjfXyK8QnzY5CinYx2mM8vRsd68ArE="
-  deploy:
-    branch: master
+    secure: FCeU8DPOLDq8tuiZBf5MPIOy0I7CSFABo0wlkn/kKNycYcOSDNKmA1hj1XiifkVCDNHXR5YjSbJD6zIGXEVLibgi6dlGw8DaqnMp1cyzmWwrFQB70BHA/HQlXuQ5VOIQnmRLMj20+9v7x12X/SprCRs2o3Qedxf6f+s07ZkNo5pq9hWQnfyzCJUKW9oJZLMS1uzPCVDK+D9uDHanySldqlE+3GD7k5AJYwos1hqMOamSXFjlGIs35pB3q6bR9fAwkTl1pAheD4L7lrla5bDT4mixLL3OxAHomdj/Gh6NQQfi0WkZpS4hl+g/ZR09yUKroSdm4kfYOiemK078xOoUSfShbHx6gpu0CdI4C42PkF8DmC2JQMVr4G6/HuosODrkg3Vgu1eelHquEssMonL76yWQt/KDF9oQt25L7trETylvLd8pyygBJ71vwgVtxVWN5m3UPX6ZYOnYduw5PGK+Fdc7htAe37EOggBAx2DtggXrvEEoOlfiJYkOpwy+T+EU0M8jKT6rhqKwSs9l67IJ+2YPMNjwxLOlK6hia2hEb6r3ODLA8LUyjQn+LLfB+fAupXIQXW5XQAgh0JBMgatJNtQzVuOL3Sz3n2uC4Wvanq+SxCZmyL+rfxF1B64Oyw2JkKHnshp+aahwvSPNbwOqxEkiGE2oKajnRp7IrjwchBg=
   on:
-    tags: true
     all_branches: true
     condition: "$DEPLOY_TO_FORGE = yes"
