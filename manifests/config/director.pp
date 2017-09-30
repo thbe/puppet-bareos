@@ -16,21 +16,25 @@ class bareos::config::director {
   file {
     $bareos::params::config_confd_dir:
       ensure => directory,
+      purge  => true,
       mode   => '0755',
       path   => $bareos::params::config_confd_dir;
 
     $bareos::params::config_confd_storage_dir:
       ensure => directory,
+      purge  => true,
       mode   => '0755',
       path   => $bareos::params::config_confd_storage_dir;
 
     $bareos::params::config_confd_clients_dir:
       ensure => directory,
+      purge  => true,
       mode   => '0755',
       path   => $bareos::params::config_confd_clients_dir;
 
     $bareos::params::config_confd_jobs_dir:
       ensure => directory,
+      purge  => true,
       mode   => '0755',
       path   => $bareos::params::config_confd_jobs_dir;
 
