@@ -424,7 +424,7 @@ Style/NumericLiterals:
 Style/OneLineConditional:
   Enabled: false
 
-Naming/BinaryOperatorParameter:
+Naming/BinaryOperatorParameterName:
   Enabled: false
 
 Style/ParenthesesAroundCondition:
