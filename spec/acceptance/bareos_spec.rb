@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'bareos' do
   let(:manifest) {
-    <<-EOS
+    <<-EndOfClassDefinition
 class { 'bareos':
   type_dir       => true,
   type_fd        => true,
@@ -10,7 +10,7 @@ class { 'bareos':
   type_webui     => true,
   backup_clients => [ 'client1.example.local', 'client2.example.local' ],
 }
-EOS
+EndOfClassDefinition
   }
 
   it 'should apply without errors' do
