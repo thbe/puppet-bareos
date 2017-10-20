@@ -10,6 +10,10 @@ before_install:
 - gem update bundler
 - gem --version
 - bundle --version
+stages:
+- test
+- acceptance
+- deploy
 script:
 - bundle exec rake $CHECK
 matrix:
@@ -17,19 +21,25 @@ matrix:
   include:
   - rvm: 2.1.9
     env: PUPPET_VERSION="~> 4.0" CHECK=test
+    stage: test
   - rvm: 2.3.1
     env: PUPPET_VERSION="~> 4.0" CHECK=test
+    stage: test
   - rvm: default
     env: PUPPET_VERSION="~> 5.0" CHECK=test
+    stage: test
   - rvm: default
     bundler_args: ''
     env: BEAKER_set=debian-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+    stage: acceptance
   - rvm: default
     bundler_args: ''
     env: BEAKER_set=debian-8-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker
+    stage: acceptance
   - rvm: default
     bundler_args: ''
     env: BEAKER_set=centos-7-x64 BEAKER_debug=1 PUPPET_INSTALL_TYPE=agent CHECK=beaker DEPLOY_TO_FORGE=yes
+    stage: deploy
 branches:
   only:
   - master
@@ -41,7 +51,7 @@ deploy:
   provider: puppetforge
   user: thbe
   password:
-    secure: FCeU8DPOLDq8tuiZBf5MPIOy0I7CSFABo0wlkn/kKNycYcOSDNKmA1hj1XiifkVCDNHXR5YjSbJD6zIGXEVLibgi6dlGw8DaqnMp1cyzmWwrFQB70BHA/HQlXuQ5VOIQnmRLMj20+9v7x12X/SprCRs2o3Qedxf6f+s07ZkNo5pq9hWQnfyzCJUKW9oJZLMS1uzPCVDK+D9uDHanySldqlE+3GD7k5AJYwos1hqMOamSXFjlGIs35pB3q6bR9fAwkTl1pAheD4L7lrla5bDT4mixLL3OxAHomdj/Gh6NQQfi0WkZpS4hl+g/ZR09yUKroSdm4kfYOiemK078xOoUSfShbHx6gpu0CdI4C42PkF8DmC2JQMVr4G6/HuosODrkg3Vgu1eelHquEssMonL76yWQt/KDF9oQt25L7trETylvLd8pyygBJ71vwgVtxVWN5m3UPX6ZYOnYduw5PGK+Fdc7htAe37EOggBAx2DtggXrvEEoOlfiJYkOpwy+T+EU0M8jKT6rhqKwSs9l67IJ+2YPMNjwxLOlK6hia2hEb6r3ODLA8LUyjQn+LLfB+fAupXIQXW5XQAgh0JBMgatJNtQzVuOL3Sz3n2uC4Wvanq+SxCZmyL+rfxF1B64Oyw2JkKHnshp+aahwvSPNbwOqxEkiGE2oKajnRp7IrjwchBg=
+    secure: V3Po8o+vQ7Ols94PyMvNMs6rIyF5KhP5sBZ2TJZ0dpK6saCdli+tvFjcvcKiz+ckxgeH5TFGfRiQFGNon8KkRLg2kwsc8ev3VZoZUJHHWzIH0uynMRzrRK7heIgTfW77VyCWeofHiumG7PVD88lIGWfEtISuoO92NFO0CVFRYwyr4l+367ORkgrCQtsvSBICyB2ObTovmGLZvHuV+6IdZQE/0zXpWkJGSQowFzKL4BZ+blWyGbTPHOFj0snziGW2pTx7rSg3SPoD4EYG3HwBUhBoEgMhCa+PmWXAfGTO5eH9IDPXS3bnxGRZflg5C1bp3306OirmCeDMzFmCWYbUetxc5W/x5p1Z8n4Us9Aqa4mM7ua0lLi7PrtgIfRp7CPzrM1NY5pchKFEmcbM02QRoe3k3lScyzjU3db4GE2uCKX3A6TvO6lM+2XQ1Zb95kNDW3MWt5ZJDV1xd041DvlFLgoYQpWVBn+ZpqWFHO8/uQEazSMpJbgX83/55ar1fcBOCeshyXzwjJXrXqiDWLJeuckFKf2zWWJjDmJ+pqG/x6xLn3CnPc75H8zgHQjLwiQbrFAqwcX1cetD0AKZsXbfqTv8IqbSELb8aSVCWsXyt12ELcYj2Et6fhIm4YRLt8sJFdCTfKnIut9nZ0qW7FFCs3o/JKH+QjiZptK5bGyPWzM=
   on:
     tags: true
     all_branches: true

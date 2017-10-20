@@ -9,4 +9,3 @@ fixtures:
       branch: "4.0.0"
   symlinks:
     bareos: "#{source_dir}"
-    
