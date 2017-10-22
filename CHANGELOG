@@ -1,3 +1,6 @@
+0.4.4 2017-10-22 thbe <project@bendler-net.de>
+ * Introduce git flow (http://danielkummer.github.io/git-flow-cheatsheet/) for better CI control
+
 0.4.3 2017-08-27 thbe <project@bendler-net.de>
  * Optimize travis.yml
 
