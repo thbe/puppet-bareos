@@ -27,9 +27,6 @@ Lint/EnsureReturn:
 Lint/HandleExceptions:
   Enabled: true
 
-Lint/LiteralInCondition:
-  Enabled: true
-
 Lint/ShadowingOuterLocalVariable:
   Enabled: true
 
