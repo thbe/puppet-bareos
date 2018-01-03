@@ -42,11 +42,11 @@ Lint/AmbiguousOperator:
 Lint/AssignmentInCondition:
   Enabled: true
 
-Layout/SpaceBeforeComment:
-  Enabled: true
-
 # DISABLED - not useful
 Style/HashSyntax:
+  Enabled: false
+
+Style/MixinUsage:
   Enabled: false
 
 # USES: as shortcut for non nil&valid checking a = x() and a.empty?

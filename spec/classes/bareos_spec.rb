@@ -6,7 +6,7 @@ describe 'bareos', :type => :class do
       let(:facts) do
         facts.merge( { root_home: '/root', staging_http_get: 'curl' } )
       end
-      let(:params) { { type_fd: true, type_sd: true, type_dir: true, type_webui: true, backup_clients: [ 'client01.example.local', 'client02.example.local' ] } }
+      let(:params) { { type_fd: true, type_sd: true, type_dir: true, type_webui: true, backup_clients: ['client01.example.local', 'client02.example.local'] } }
 
       it { is_expected.to compile.with_all_deps }
 
