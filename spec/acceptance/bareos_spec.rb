@@ -8,7 +8,7 @@ class { 'bareos':
   type_fd        => true,
   type_sd        => true,
   type_webui     => true,
-  backup_clients => [ 'client1.example.local', 'client2.example.local' ],
+  backup_clients => ['client1.example.local', 'client2.example.local'],
 }
 CLASSPARAMETER
   }
