@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'bareos' do
   let(:manifest) {
-    <<-CLASSPARAMETER
+<<-CLASSPARAMETER
 class { 'bareos':
   type_dir       => true,
   type_fd        => true,
